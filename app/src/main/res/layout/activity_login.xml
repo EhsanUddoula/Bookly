@@ -40,7 +40,7 @@
         app:layout_constraintVertical_bias="0.378" />
 
     <EditText
-        android:id="@+id/PasswordBox"
+        android:id="@+id/passwordBox"
         android:layout_width="305dp"
         android:layout_height="49dp"
         android:background="@drawable/input_bg_2"
@@ -149,7 +149,7 @@
         app:layout_constraintVertical_bias="0.844" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/eyeIcon"
         android:layout_width="44dp"
         android:layout_height="27dp"
         app:layout_constraintBottom_toBottomOf="parent"

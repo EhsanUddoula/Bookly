@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/eyeIcon"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECECEC"
@@ -59,7 +60,7 @@
         app:layout_constraintVertical_bias="0.585" />
 
     <EditText
-        android:id="@+id/PasswordBox"
+        android:id="@+id/passwordBox"
         android:layout_width="305dp"
         android:layout_height="49dp"
         android:background="@drawable/input_bg_2"
@@ -78,7 +79,7 @@
         app:layout_constraintVertical_bias="0.683" />
 
     <EditText
-        android:id="@+id/passwordBox"
+        android:id="@+id/passwordBox2"
         android:layout_width="305dp"
         android:layout_height="49dp"
         android:background="@drawable/input_bg_2"
@@ -171,7 +172,7 @@
         app:layout_constraintVertical_bias="0.94" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/passIcon2"
         android:layout_width="44dp"
         android:layout_height="27dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -183,7 +184,7 @@
         app:srcCompat="@drawable/baseline_remove_red_eye_24" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/passIcon"
         android:layout_width="44dp"
         android:layout_height="27dp"
         app:layout_constraintBottom_toBottomOf="parent"
