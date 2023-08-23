@@ -1,6 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+<<<<<<< HEAD
     <style name="Base.Theme.Bookly" parent="Theme.AppCompat">
+=======
+    <style name="Base.Theme.Bookly" parent="Theme.Material3.DayNight.NoActionBar">
+>>>>>>> 0a6440bd15c928d380c7292074597ece468afd75
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
