@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class loginActivity extends AppCompatActivity {
-    private TextView goToRegister;
+    private TextView goToRegister,forgotPass;
     private ImageView passVisibility;
     private TextView passwordView;
     @Override
@@ -22,6 +22,7 @@ public class loginActivity extends AppCompatActivity {
         goToRegister=findViewById(R.id.goToRegister);
         passVisibility=findViewById(R.id.eyeIcon);
         passwordView=findViewById(R.id.passwordBox);
+        forgotPass=findViewById(R.id.forgotPass);
         goToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,6 +40,14 @@ public class loginActivity extends AppCompatActivity {
                 else{
                     passwordView.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }
+            }
+        });
+
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(loginActivity.this, resetPass.class);
+                startActivity(intent);
             }
         });
     }
