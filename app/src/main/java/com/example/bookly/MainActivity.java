@@ -41,5 +41,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                String subject ="BOOKLY";
+                String body="You can checkout bookly to buy and read book";
+                intent.putExtra(Intent.EXTRA_SUBJECT,subject);
+                intent.putExtra(Intent.EXTRA_TEXT,body);
+
+                startActivity(Intent.createChooser(intent,"Share with Friends"));
+            }
+        });
     }
 }
