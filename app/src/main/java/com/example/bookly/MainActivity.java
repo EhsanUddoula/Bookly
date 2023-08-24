@@ -55,5 +55,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(Intent.createChooser(intent,"Share with Friends"));
             }
         });
+
+        contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Intent.ACTION_SEND);
+                intent.setType("text/email");
+
+                intent.putExtra(Intent.EXTRA_EMAIL,new String[] {"ehsan.siam135@gmail.com"});
+                startActivity(Intent.createChooser(intent,"Contact Us"));
+            }
+        });
     }
 }
