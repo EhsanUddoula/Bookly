@@ -19,6 +19,9 @@ public class loginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        getSupportActionBar().setTitle("Log In");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         goToRegister=findViewById(R.id.goToRegister);
         passVisibility=findViewById(R.id.eyeIcon);
         passwordView=findViewById(R.id.passwordBox);

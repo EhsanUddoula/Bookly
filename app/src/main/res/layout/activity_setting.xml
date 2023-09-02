@@ -295,17 +295,5 @@
         app:layout_constraintVertical_bias="0.441"
         app:srcCompat="@drawable/baseline_edit_24_icon" />
 
-    <ImageView
-        android:id="@+id/imageView15"
-        android:layout_width="41dp"
-        android:layout_height="39dp"
-        android:src="@drawable/baseline_arrow_back_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.032"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.014" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,6 +23,9 @@ public class registerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        getSupportActionBar().setTitle("Register");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         loginText=findViewById(R.id.goToLogin);
         passVisibility1=findViewById(R.id.passwordBox);
         passVisibility2=findViewById(R.id.passwordBox2);

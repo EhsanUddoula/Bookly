@@ -15,6 +15,9 @@ public class resetPass extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_pass);
 
+        getSupportActionBar().setTitle("Reset Password");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         resetButton=findViewById(R.id.resetButton);
         resetButton.setOnClickListener(this);
     }
