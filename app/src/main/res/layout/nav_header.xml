@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="176dp"
+    android:background="@color/mustard"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    android:orientation="vertical"
+    android:gravity="bottom">
+
+    <ImageView
+        android:id="@+id/profile_pic"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="40dp"
+        android:paddingTop="8dp"
+        android:src="@drawable/profile_empty"
+        />
+
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="3dp"
+        android:textColor="#0E497C"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Your Name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        />
+
+
+
+</LinearLayout>

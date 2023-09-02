@@ -25,7 +25,7 @@
             android:exported="false" />
         <activity
             android:name=".registerActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".loginActivity"
             android:exported="false" />
         <activity
             android:name=".loginActivity"

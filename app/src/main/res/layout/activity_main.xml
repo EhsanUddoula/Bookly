@@ -1,52 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:id="@+id/drawer_layout"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity"
+    tools:openDrawer="start">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/login"
-        android:padding="5dp"
-        android:text="LOGIN"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/register"
-        android:padding="5dp"
-        android:text="REGISTER"
-        android:layout_marginTop="10dp"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/share"
-        android:padding="5dp"
-        android:text="SHARE"
-        android:layout_marginTop="10dp"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/contact"
-        android:padding="5dp"
-        android:text="CONTACT US"
-        android:layout_marginTop="10dp"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/setting"
-        android:padding="5dp"
-        android:text="SETTING"
-        android:layout_marginTop="10dp"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#ECECEC">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:background="@color/mustard"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <ImageView
+                android:id="@+id/appbar_bookly"
+                android:layout_width="140dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="25dp"
+                android:src="@drawable/bookliname"
+                android:adjustViewBounds="true"/>
+            <ImageView
+                android:id="@+id/appbar_cart"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:src="@drawable/baseline_shopping_cart_24_blue"
+                android:adjustViewBounds="true"/>
+
+        </androidx.appcompat.widget.Toolbar>
 
 
-</LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:id="@+id/nav_view"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu"/>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

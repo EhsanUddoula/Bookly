@@ -1,69 +1,61 @@
 package com.example.bookly;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.view.WindowManager;
 
-public class MainActivity extends AppCompatActivity {
-    private Button loginButton,registerButton,setting,share,contact;
+import com.google.android.material.navigation.NavigationView;
+
+public class MainActivity extends AppCompatActivity{
+    private DrawerLayout drawer;
+    private NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        //getSupportActionBar().hide();
 
-        loginButton=findViewById(R.id.login);
-        registerButton=findViewById(R.id.register);
-        setting=findViewById(R.id.setting);
-        share=findViewById(R.id.share);
-        contact=findViewById(R.id.contact);
-        loginButton.setOnClickListener(new View.OnClickListener() {
+
+        ColorDrawable color =new ColorDrawable(Color.parseColor("#FFD700"));
+        getSupportActionBar().setBackgroundDrawable(color);
+
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+
+        //setSupportActionBar(toolbar);
+        drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.nav_open, R.string.nav_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView=findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(MainActivity.this,loginActivity.class);
-                startActivity(intent);
-            }
-        });
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(MainActivity.this,registerActivity.class);
-                startActivity(intent);
-            }
-        });
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId()==R.id.log_in){
+                    Intent intent=new Intent(MainActivity.this, loginActivity.class);
+                    startActivity(intent);
+                    drawer.closeDrawer(GravityCompat.START);
+                }
 
-        setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(MainActivity.this,setting.class);
-                startActivity(intent);
-            }
-        });
+                if(item.getItemId()==R.id.nav_settings){
+                    Intent intent=new Intent(MainActivity.this,setting.class);
+                    startActivity(intent);
+                    drawer.closeDrawer(GravityCompat.START);
+                }
 
-        share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                String subject ="BOOKLY";
-                String body="You can checkout bookly to buy and read book";
-                intent.putExtra(Intent.EXTRA_SUBJECT,subject);
-                intent.putExtra(Intent.EXTRA_TEXT,body);
-
-                startActivity(Intent.createChooser(intent,"Share with Friends"));
-            }
-        });
-
-        contact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(Intent.ACTION_SEND);
-                intent.setType("text/email");
-
-                intent.putExtra(Intent.EXTRA_EMAIL,new String[] {"ehsan.siam135@gmail.com"});
-                startActivity(Intent.createChooser(intent,"Contact Us"));
+                return true;
             }
         });
     }

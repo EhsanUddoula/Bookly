@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_my_orders"
+            android:icon="@drawable/baseline_orders_24"
+            android:title="My Orders" />
+
+        <item
+            android:id="@+id/nav_my_cart"
+            android:icon="@drawable/baseline_shopping_cart_24_black"
+            android:title="My Cart" />
+
+        <item
+            android:id="@+id/nav_offers"
+            android:icon="@drawable/baseline_offers_24"
+            android:title="Offers" />
+
+        <item
+            android:id="@+id/nav_my_wishlist"
+            android:icon="@drawable/baseline_favorite_24"
+            android:title="My Wishlist" />
+
+        <item
+            android:id="@+id/nav_rate_us"
+            android:icon="@drawable/baseline_star_rate_24"
+            android:title="Rate Us" />
+
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/baseline_share_24"
+            android:title="Share" />
+
+        <item
+            android:id="@+id/nav_contact_us"
+            android:icon="@drawable/baseline_email_24"
+            android:title="Contact Us" />
+
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/baseline_question_mark_24"
+            android:title="About" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/baseline_settings_24_black"
+            android:title="Settings" />
+
+        <item
+            android:id="@+id/log_in"
+            android:icon="@drawable/baseline_login_24"
+            android:title="Sign In"/>
+
+
+
+    </group>
+</menu>
