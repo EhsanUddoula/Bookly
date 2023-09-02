@@ -2,6 +2,8 @@ package com.example.bookly;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 public class setting extends AppCompatActivity {
@@ -13,5 +15,8 @@ public class setting extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Setting");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ColorDrawable color =new ColorDrawable(Color.parseColor("#FFD700"));
+        getSupportActionBar().setBackgroundDrawable(color);
     }
 }

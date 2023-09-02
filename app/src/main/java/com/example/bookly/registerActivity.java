@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -25,6 +27,9 @@ public class registerActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Register");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ColorDrawable color =new ColorDrawable(Color.parseColor("#FFD700"));
+        getSupportActionBar().setBackgroundDrawable(color);
 
         loginText=findViewById(R.id.goToLogin);
         passVisibility1=findViewById(R.id.passwordBox);

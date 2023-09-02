@@ -3,6 +3,8 @@ package com.example.bookly;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -21,6 +23,9 @@ public class loginActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Log In");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ColorDrawable color =new ColorDrawable(Color.parseColor("#FFD700"));
+        getSupportActionBar().setBackgroundDrawable(color);
 
         goToRegister=findViewById(R.id.goToRegister);
         passVisibility=findViewById(R.id.eyeIcon);
