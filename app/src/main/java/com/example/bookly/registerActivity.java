@@ -1,5 +1,6 @@
 package com.example.bookly;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -10,15 +11,29 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.ktx.Firebase;
 
 public class registerActivity extends AppCompatActivity {
 
     private TextView loginText;
     private EditText passVisibility1,passVisibility2;
     private ImageView icon1,icon2;
+    private Button register;
+    private EditText registerEmail,registerPass,registerPass2;
+    private FirebaseAuth mAuth;
+    private ProgressBar progressBar;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +46,20 @@ public class registerActivity extends AppCompatActivity {
         ColorDrawable color =new ColorDrawable(Color.parseColor("#FFD700"));
         getSupportActionBar().setBackgroundDrawable(color);
 
+        mAuth=FirebaseAuth.getInstance();
+
         loginText=findViewById(R.id.goToLogin);
         passVisibility1=findViewById(R.id.passwordBox);
         passVisibility2=findViewById(R.id.passwordBox2);
+        register=findViewById(R.id.registerButton);
         icon1=findViewById(R.id.passIcon);
         icon2=findViewById(R.id.passIcon2);
+        registerEmail=findViewById(R.id.editTextTextEmailAddress);
+        registerPass=findViewById(R.id.passwordBox);
+        registerPass2=findViewById(R.id.passwordBox2);
+        progressBar=findViewById(R.id.progressBarId);
+
+
         loginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +87,79 @@ public class registerActivity extends AppCompatActivity {
                 }
                 else{
                     passVisibility2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+            }
+        });
+        
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userRegister();
+            }
+        });
+
+
+    }
+    private void userRegister() {
+        String email=registerEmail.getText().toString().trim();
+        String password=registerPass.getText().toString().trim();
+        String ConPassword=registerPass2.getText().toString().trim();
+
+        if(email.isEmpty())
+        {
+            registerEmail.setError("Enter an email address");
+            registerEmail.requestFocus();
+            return;
+        }
+
+        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches())
+        {
+            registerEmail.setError("Enter a valid email address");
+            registerEmail.requestFocus();
+            return;
+        }
+
+        //checking the validity of the password
+        if(password.isEmpty())
+        {
+            registerPass.setError("Enter a password");
+            registerPass.requestFocus();
+            return;
+        }
+        if(ConPassword.isEmpty())
+        {
+            registerPass2.setError("Enter a password");
+            registerPass2.requestFocus();
+            return;
+        }
+
+        if(!password.equals(ConPassword)){
+            registerPass2.setError("Confirm password is not matched with Password");
+            registerPass2.requestFocus();
+            return;
+        }
+
+        if(password.length()<6){
+            registerPass.setError("Your Password is too short");
+            registerPass.requestFocus();
+            return;
+        }
+
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBar.setVisibility(View.GONE);
+                if(task.isSuccessful()){
+                    Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_SHORT).show();
+                } else{
+                    if(task.getException() instanceof FirebaseAuthUserCollisionException) {
+                        registerEmail.setError("Already registered Email");
+                        registerEmail.requestFocus();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(),"Not Successful",Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

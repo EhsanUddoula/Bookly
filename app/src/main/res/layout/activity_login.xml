@@ -21,14 +21,14 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/nameBox"
+        android:id="@+id/loginEmail"
         android:layout_width="305dp"
         android:layout_height="49dp"
         android:background="@drawable/input_bg_2"
         android:drawableLeft="@drawable/baseline_person_24"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="Name"
+        android:hint="Email"
         android:inputType="text"
         android:paddingLeft="20dp"
         android:textColor="@color/black"
@@ -159,5 +159,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.517"
         app:srcCompat="@drawable/baseline_remove_red_eye_24" />
+
+    <ProgressBar
+        android:id="@+id/progressBarId"
+        android:layout_width="77dp"
+        android:layout_height="83dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordBox"
+        app:layout_constraintVertical_bias="0.934" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
