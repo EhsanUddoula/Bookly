@@ -23,6 +23,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.ktx.Firebase;
 
 public class registerActivity extends AppCompatActivity {
@@ -31,9 +33,10 @@ public class registerActivity extends AppCompatActivity {
     private EditText passVisibility1,passVisibility2;
     private ImageView icon1,icon2;
     private Button register;
-    private EditText registerEmail,registerPass,registerPass2;
+    private EditText registerEmail,registerPass,registerPass2,registerName,registerPhone,registerAddress;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
+    DatabaseReference databaseReference;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,10 @@ public class registerActivity extends AppCompatActivity {
         registerPass=findViewById(R.id.passwordBox);
         registerPass2=findViewById(R.id.passwordBox2);
         progressBar=findViewById(R.id.progressBarId);
+        registerName=findViewById(R.id.editTextName);
+        registerPhone=findViewById(R.id.editTextPhone);
+        registerAddress=findViewById(R.id.editTextAddress);
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("users");
 
 
         loginText.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +111,9 @@ public class registerActivity extends AppCompatActivity {
         String email=registerEmail.getText().toString().trim();
         String password=registerPass.getText().toString().trim();
         String ConPassword=registerPass2.getText().toString().trim();
+        String phone=registerPhone.getText().toString().trim();
+        String address=registerAddress.getText().toString().trim();
+        String name=registerName.getText().toString().trim();
 
         if(email.isEmpty())
         {
@@ -145,13 +155,35 @@ public class registerActivity extends AppCompatActivity {
             return;
         }
 
+        if(phone.isEmpty()){
+            registerPhone.setError("Enter a phone number");
+            registerPhone.requestFocus();
+            return;
+        }
+
+        if(name.isEmpty()){
+            registerName.setError("Enter your Name");
+            registerName.requestFocus();
+            return;
+        }
+
+        if(address.isEmpty()){
+            registerAddress.setError("Enter a valid address");
+            registerAddress.requestFocus();
+            return;
+        }
+
         progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()){
+                    String key=databaseReference.push().getKey();
+                    User user= new User(name,phone,address);
+                    databaseReference.child(key).setValue(user);
                     Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_SHORT).show();
+                    finish();
                 } else{
                     if(task.getException() instanceof FirebaseAuthUserCollisionException) {
                         registerEmail.setError("Already registered Email");

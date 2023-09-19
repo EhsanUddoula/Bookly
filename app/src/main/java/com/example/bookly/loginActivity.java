@@ -121,6 +121,7 @@ public class loginActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()){
                     Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_SHORT).show();
+                    finish();
                     Intent intent=new Intent(getApplicationContext(),MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/nameBox"
+        android:id="@+id/editTextName"
         android:layout_width="305dp"
         android:layout_height="49dp"
         android:background="@drawable/input_bg_2"
@@ -38,10 +38,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.302" />
+        app:layout_constraintVertical_bias="0.299" />
 
     <EditText
-        android:id="@+id/nameBox2"
+        android:id="@+id/editTextAddress"
         android:layout_width="305dp"
         android:layout_height="49dp"
         android:background="@drawable/input_bg_2"
@@ -242,7 +242,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/passwordBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.992"
-        app:layout_constraintStart_toStartOf="@+id/nameBox2"
+        app:layout_constraintStart_toStartOf="@+id/editTextAddress"
         app:layout_constraintTop_toTopOf="@+id/editTextTextEmailAddress"
         app:layout_constraintVertical_bias="0.865" />
 
