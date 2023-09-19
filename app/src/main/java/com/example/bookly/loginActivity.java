@@ -123,6 +123,7 @@ public class loginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_SHORT).show();
                     finish();
                     Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                    intent.putExtra("tag",1);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 } else{

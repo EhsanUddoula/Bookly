@@ -4,4 +4,8 @@
 
     </style>
 
+    <style name="Bookly" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="actionBarSize">0dp</item>
+    </style>
+
 </resources>
