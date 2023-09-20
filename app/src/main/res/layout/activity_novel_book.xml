@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,9 +7,26 @@
     android:orientation="vertical"
     tools:context=".NovelBook">
 
+    <ProgressBar
+        android:id="@+id/progbar"
+        android:layout_width="350dp"
+        android:layout_height="92dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycleBook"
+        app:layout_constraintVertical_bias="0.513" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleBook"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recycleBook"/>
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="-40dp"
+        />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

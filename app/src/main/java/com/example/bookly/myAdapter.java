@@ -3,6 +3,7 @@ package com.example.bookly;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
-    ArrayList<NovelModel> dataList;
+    private ArrayList<NovelModel> dataList;
 
     public myAdapter(ArrayList<NovelModel> dataList){
         this.dataList=dataList;
@@ -26,8 +27,8 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
-        holder.text1.setText(dataList.get(position).getBook());
-        holder.text2.setText(dataList.get(position).getWriter());
+        holder.bookName.setText(dataList.get(position).getBook());
+        holder.writerName.setText(dataList.get(position).getWriter());
     }
 
     @Override
@@ -37,11 +38,13 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
 
     class myViewHolder extends RecyclerView.ViewHolder{
 
-        TextView text1,text2;
+        TextView bookName,writerName;
+        ImageView imageName;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
-            text1=itemView.findViewById(R.id.bookName);
-            text2=itemView.findViewById(R.id.writerName);
+            bookName=itemView.findViewById(R.id.bookName);
+            writerName=itemView.findViewById(R.id.writerName);
+            imageName=itemView.findViewById(R.id.imageName);
         }
     }
 }

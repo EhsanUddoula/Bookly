@@ -1,14 +1,15 @@
 package com.example.bookly;
 
 public class NovelModel {
-    private String book,writer;
+    private String book,writer,image;
 
     public NovelModel() {
     }
 
-    public NovelModel(String book, String writer) {
+    public NovelModel(String book, String writer,String image) {
         this.book = book;
         this.writer = writer;
+        this.image=image;
     }
 
     public String getBook() {
@@ -25,5 +26,13 @@ public class NovelModel {
 
     public void setWriter(String writer) {
         this.writer = writer;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

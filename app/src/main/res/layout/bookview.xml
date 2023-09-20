@@ -4,13 +4,20 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:id="@+id/imageName"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:layout_marginTop="10dp"
         android:textStyle="bold"
-        android:textSize="18sp"
+        android:textSize="28sp"
+        android:text="Book"
         android:id="@+id/bookName"
         />
 
@@ -20,7 +27,8 @@
         android:paddingTop="10dp"
         android:layout_marginTop="10dp"
         android:textStyle="bold"
-        android:textSize="18sp"
+        android:textSize="28sp"
+        android:text="Writer"
         android:id="@+id/writerName"
         />
 
