@@ -2,14 +2,24 @@ package com.example.bookly;
 
 public class NovelModel {
     private String book,writer,image;
+    private double price;
 
     public NovelModel() {
     }
 
-    public NovelModel(String book, String writer,String image) {
+    public NovelModel(String book, String writer,String image,double price) {
         this.book = book;
         this.writer = writer;
         this.image=image;
+        this.price=price;
+    }
+
+    public String getPrice() {
+        return price+" TK";
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getBook() {

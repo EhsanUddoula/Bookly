@@ -42,7 +42,7 @@ public class NovelBook extends AppCompatActivity {
         recyclerView=findViewById(R.id.recycleBook);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         dataList=new ArrayList<>();
-        adapter=new myAdapter(dataList);
+        adapter=new myAdapter(this,dataList);
         recyclerView.setAdapter(adapter);
         progressBar=findViewById(R.id.progbar);
 
