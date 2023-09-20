@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -25,7 +26,9 @@ public class MainActivity extends AppCompatActivity{
     private NavigationView navigationView;
     private TextView NameText;
     private FirebaseAuth mAuth;
-    private int logKey=0;
+    private static int logKey=0;
+
+    private ImageView Novel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity{
         MenuItem logBtn=menu.findItem(R.id.log_in);
         View header=navigationView.getHeaderView(0);
         NameText=header.findViewById(R.id.nameText);
+        Novel=findViewById(R.id.novel);
 
         Bundle bundle=getIntent().getExtras();
         if(bundle!=null)logKey=1;
@@ -60,7 +64,13 @@ public class MainActivity extends AppCompatActivity{
             NameText.setText("Ehsan");
         }
 
-
+        Novel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, NovelBook.class);
+                startActivity(intent);
+            }
+        });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
