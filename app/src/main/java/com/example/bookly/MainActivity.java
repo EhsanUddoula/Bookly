@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity{
     private FirebaseAuth mAuth;
     private static int logKey=0;
 
-    private ImageView Novel;
+    private ImageView Novel,Poetry,mystery_book,religious;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +56,9 @@ public class MainActivity extends AppCompatActivity{
         View header=navigationView.getHeaderView(0);
         NameText=header.findViewById(R.id.nameText);
         Novel=findViewById(R.id.novel);
+        Poetry=findViewById(R.id.cat2_poetry);
+        mystery_book=findViewById(R.id.cat3_mystery);
+        religious=findViewById(R.id.cat4_religious);
 
         Bundle bundle=getIntent().getExtras();
         if(bundle!=null)logKey=1;
@@ -68,6 +71,30 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this, NovelBook.class);
+                startActivity(intent);
+            }
+        });
+
+        Poetry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, PoetryBook.class);
+                startActivity(intent);
+            }
+        });
+
+        mystery_book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, Mystery.class);
+                startActivity(intent);
+            }
+        });
+
+        religious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, Mystery.class);
                 startActivity(intent);
             }
         });

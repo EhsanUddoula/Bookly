@@ -15,9 +15,21 @@
         android:theme="@style/Base.Theme.Bookly"
         tools:targetApi="31">
         <activity
-            android:name=".NovelBook"
+            android:name=".Religious"
             android:exported="false"
             android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".Mystery"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".PoetryBook"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".NovelBook"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".setting"
             android:exported="false"
