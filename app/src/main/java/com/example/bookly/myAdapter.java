@@ -39,7 +39,6 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
         holder.bookName.setText(dataList.get(position).getBook());
         holder.writerName.setText(dataList.get(position).getWriter());
         holder.price.setText(dataList.get(position).getPrice());
-        Toast.makeText(context,model.getImage(),Toast.LENGTH_LONG).show();
         Glide.with(context)
                 .load(model.getImage())
                 .error(R.drawable.nineteen84)// Assuming you have a method to get the image URL from NovelModel

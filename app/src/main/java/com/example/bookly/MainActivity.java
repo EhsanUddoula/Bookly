@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -120,6 +121,19 @@ public class MainActivity extends AppCompatActivity{
                     Intent intent=new Intent(MainActivity.this,setting.class);
                     startActivity(intent);
                     drawer.closeDrawer(GravityCompat.START);
+                }
+
+                if(item.getItemId()==R.id.nav_contact_us){
+
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("text/email");
+
+                        intent.putExtra(intent.EXTRA_EMAIL, "ehsan.siam135@gmail.com");
+                        startActivity(Intent.createChooser(intent, "contact us"));
+                    }catch (Exception e){
+                        Toast.makeText(getApplicationContext(),"Exception "+e,Toast.LENGTH_SHORT)
+                                .show();                    }
                 }
 
                 return true;
