@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/grad_back"
+    android:orientation="vertical"
+    tools:context=".about_us">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/bookliname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="366dp"
+        android:layout_height="112dp"
+        android:layout_marginTop="28dp"
+        android:text="Your go-to Android app for buying books effortlessly. Discover your next great read, read reviews, and connect with fellow book enthusiasts. With Bookly, the world of literature is at your fingertips.For more details about the developer click on below the buttons."
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/ehsimg"
+        android:layout_width="114dp"
+        android:layout_height="114dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="104dp"
+        android:background="@drawable/circular_background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/pal"
+        app:layout_constraintEnd_toStartOf="@+id/kanimg"
+        app:layout_constraintTop_toBottomOf="@+id/textView"></ImageView>
+
+    <ImageView
+        android:id="@+id/kanimg"
+        android:layout_width="114dp"
+        android:layout_height="114dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="28dp"
+        android:background="@drawable/circular_background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/kan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/rayimg"
+        android:layout_width="114dp"
+        android:layout_height="114dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="264dp"
+        android:background="@drawable/circular_background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/ehsbut"
+        android:layout_width="102dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="120dp"
+        android:background="@drawable/butt_style"
+        android:text="Ehsan"
+        android:textColor="#030300"
+        app:layout_constraintEnd_toStartOf="@+id/kanbut"
+        app:layout_constraintHorizontal_bias="0.946"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ehsimg" />
+
+    <Button
+        android:id="@+id/kanbut"
+        android:layout_width="97dp"
+        android:layout_height="50dp"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="36dp"
+        android:background="@drawable/butt_style"
+        android:text="Kanij"
+        android:textColor="#030300"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kanimg" />
+
+    <Button
+        android:id="@+id/raybut"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@drawable/butt_style"
+        android:text="Rayhan"
+        android:textColor="#030300"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rayimg"
+        app:layout_constraintVertical_bias="0.542" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

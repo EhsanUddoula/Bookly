@@ -8,4 +8,16 @@
         <item name="actionBarSize">0dp</item>
     </style>
 
+    <style name="Myratingbar" parent="Widget.AppCompat.RatingBar">
+        <!-- non selected star color-->
+        <item name="colorControlNormal">#4d000000</item>
+        <!-- selected star color-->
+        <item name="colorControlActivated">#fefb03</item>
+
+    </style>
+
+    <style name="round">
+        <item name="cornerSize">15%</item>
+    </style>
+
 </resources>

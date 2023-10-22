@@ -41,7 +41,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
         holder.price.setText(dataList.get(position).getPrice());
         Glide.with(context)
                 .load(model.getImage())
-                .error(R.drawable.nineteen84)// Assuming you have a method to get the image URL from NovelModel
+                .error(R.drawable.app_icon)// Assuming you have a method to get the image URL from NovelModel
                 .into(holder.imageName);
 
     }

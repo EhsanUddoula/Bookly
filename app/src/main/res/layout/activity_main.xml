@@ -21,6 +21,7 @@
             android:layout_marginLeft="35dp"
             android:orientation="vertical"
             android:background="#ECECEC">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -85,6 +86,13 @@
 
 
             </LinearLayout>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="333dp"
+                android:layout_height="227dp"
+                android:src="@drawable/offer1"
+                android:layout_marginTop="55dp"
+                app:shapeAppearanceOverlay="@style/round"/>
 
 
         </LinearLayout>

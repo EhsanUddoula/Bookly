@@ -20,6 +20,12 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.ktx.Firebase;
 
 public class MainActivity extends AppCompatActivity{
@@ -28,8 +34,9 @@ public class MainActivity extends AppCompatActivity{
     private TextView NameText;
     private FirebaseAuth mAuth;
     private static int logKey=0;
+    private  String name="hello";
 
-    private ImageView Novel,Poetry,mystery_book,religious;
+    private ImageView Novel,Poetry,mystery_book,religious,cart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,12 +67,33 @@ public class MainActivity extends AppCompatActivity{
         Poetry=findViewById(R.id.cat2_poetry);
         mystery_book=findViewById(R.id.cat3_mystery);
         religious=findViewById(R.id.cat4_religious);
+        cart=findViewById(R.id.appbar_cart);
 
         Bundle bundle=getIntent().getExtras();
-        if(bundle!=null)logKey=1;
+        if(bundle!=null){
+            logKey=1;
+            FirebaseUser firebaseUser=mAuth.getCurrentUser();
+            String uid= firebaseUser.getUid();
+
+            DatabaseReference ref= FirebaseDatabase.getInstance().getReference("users");
+
+            ref.child(uid)
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            name = ""+snapshot.child("name").getValue();
+                            NameText.setText(name);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+        }
         if(logKey==1) {
             logBtn.setTitle("Sign Out");
-            NameText.setText("Ehsan");
+
         }
 
         Novel.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +123,15 @@ public class MainActivity extends AppCompatActivity{
         religious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this, Mystery.class);
+                Intent intent=new Intent(MainActivity.this, Religious.class);
+                startActivity(intent);
+            }
+        });
+
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,page7_Activity.class);
                 startActivity(intent);
             }
         });
@@ -134,7 +170,21 @@ public class MainActivity extends AppCompatActivity{
                     }catch (Exception e){
                         Toast.makeText(getApplicationContext(),"Exception "+e,Toast.LENGTH_SHORT)
                                 .show();                    }
+
                 }
+
+                if(item.getItemId()==R.id.nav_rate_us){
+                    Intent intent =new Intent(MainActivity.this,rateus.class);
+                    startActivity(intent);
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+
+                if(item.getItemId()==R.id.nav_about){
+                    Intent intent =new Intent(MainActivity.this,about_us.class);
+                    startActivity(intent);
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+
 
                 return true;
             }

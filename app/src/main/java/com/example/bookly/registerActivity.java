@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -19,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +29,8 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.ktx.Firebase;
+
+import java.util.HashMap;
 
 public class registerActivity extends AppCompatActivity {
 
@@ -107,13 +112,15 @@ public class registerActivity extends AppCompatActivity {
 
 
     }
+    private String email,phone,address,name,uid,image;
     private void userRegister() {
-        String email=registerEmail.getText().toString().trim();
+        email=registerEmail.getText().toString().trim();
         String password=registerPass.getText().toString().trim();
         String ConPassword=registerPass2.getText().toString().trim();
-        String phone=registerPhone.getText().toString().trim();
-        String address=registerAddress.getText().toString().trim();
-        String name=registerName.getText().toString().trim();
+        phone=registerPhone.getText().toString().trim();
+        address=registerAddress.getText().toString().trim();
+        name=registerName.getText().toString().trim();
+        uid=mAuth.getUid();
 
         if(email.isEmpty())
         {
@@ -179,8 +186,8 @@ public class registerActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()){
-                    String key=databaseReference.push().getKey();
-                    User user= new User(name,phone,address);
+                    String key=mAuth.getUid();
+                    User user= new User(name,phone,address,uid,image);
                     databaseReference.child(key).setValue(user);
                     Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_SHORT).show();
                     finish();
@@ -195,5 +202,40 @@ public class registerActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void updateUserInfo(){
+        progressBar.setVisibility(View.VISIBLE);
+        long timestamp= System.currentTimeMillis();
+
+        String uid=mAuth.getUid();
+
+        HashMap<String,Object> hashMap=new HashMap<>();
+
+        hashMap.put("uid", uid);
+        hashMap.put("email", email);
+        hashMap.put("name",name);
+        hashMap.put("address", address);
+        hashMap.put("phone",phone);
+        hashMap.put("image","");
+
+        DatabaseReference ref=FirebaseDatabase.getInstance().getReference("users");
+        ref.child(uid)
+                .setValue(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        progressBar.setVisibility((View.GONE));
+                        Toast.makeText(registerActivity.this,"Acccount updated...",Toast.LENGTH_SHORT).show();
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(registerActivity.this,""+e.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
