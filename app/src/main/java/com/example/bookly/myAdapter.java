@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,10 +40,14 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
         holder.bookName.setText(dataList.get(position).getBook());
         holder.writerName.setText(dataList.get(position).getWriter());
         holder.price.setText(dataList.get(position).getPrice());
+        holder.details.setText(dataList.get(position).getDescription());
         Glide.with(context)
                 .load(model.getImage())
                 .error(R.drawable.app_icon)// Assuming you have a method to get the image URL from NovelModel
                 .into(holder.imageName);
+
+        boolean isExpandable=dataList.get(position).isExpanded();
+        holder.expand.setVisibility(isExpandable ? View.VISIBLE :View.GONE);
 
     }
 
@@ -53,7 +58,9 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
 
     class myViewHolder extends RecyclerView.ViewHolder{
 
-        TextView bookName,writerName,price;
+        TextView bookName,writerName,price,details;
+        LinearLayout expand;
+        ImageView image;
 
         ImageView imageName;
         public myViewHolder(@NonNull View itemView) {
@@ -62,6 +69,18 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
             writerName=itemView.findViewById(R.id.writerName);
             imageName=itemView.findViewById(R.id.imageName);
             price=itemView.findViewById(R.id.price);
+            details=itemView.findViewById(R.id.details);
+            image=itemView.findViewById(R.id.imageName);
+            expand=itemView.findViewById(R.id.expandable);
+
+            image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    NovelModel model= dataList.get(getAdapterPosition());
+                    model.setExpanded(!model.isExpanded());
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
         }
     }
 }
