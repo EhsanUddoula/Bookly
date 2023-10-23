@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,11 +15,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
 public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
     private ArrayList<NovelModel> dataList;
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
 
     Context context;
 
@@ -60,9 +66,8 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
 
         TextView bookName,writerName,price,details;
         LinearLayout expand;
-        ImageView image;
-
         ImageView imageName;
+        Button addCart;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
             bookName=itemView.findViewById(R.id.bookName);
@@ -70,15 +75,26 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
             imageName=itemView.findViewById(R.id.imageName);
             price=itemView.findViewById(R.id.price);
             details=itemView.findViewById(R.id.details);
-            image=itemView.findViewById(R.id.imageName);
             expand=itemView.findViewById(R.id.expandable);
+            addCart=itemView.findViewById(R.id.addToCart);
 
-            image.setOnClickListener(new View.OnClickListener() {
+            imageName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     NovelModel model= dataList.get(getAdapterPosition());
                     model.setExpanded(!model.isExpanded());
                     notifyItemChanged(getAdapterPosition());
+                }
+            });
+
+            addCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    NovelModel model= dataList.get(getAdapterPosition());
+                    db = FirebaseFirestore.getInstance();
+                    FirebaseUser currentUser=mAuth.getCurrentUser();
+                    String uid= currentUser.getUid();
+                    //db.collection("Cart").document("uid").collection("currentUser").add();
                 }
             });
         }

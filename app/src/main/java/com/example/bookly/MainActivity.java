@@ -38,6 +38,36 @@ public class MainActivity extends AppCompatActivity{
 
     private ImageView Novel,Poetry,mystery_book,religious,cart;
     @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        Menu menu=navigationView.getMenu();
+        MenuItem logBtn=menu.findItem(R.id.log_in);
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            logKey=1;
+            String uid= currentUser.getUid();
+
+            DatabaseReference ref= FirebaseDatabase.getInstance().getReference("users");
+
+            ref.child(uid)
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            name = ""+snapshot.child("name").getValue();
+                            NameText.setText(name);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+            logBtn.setTitle("Sign Out");
+        }
+
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
             //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -91,6 +121,7 @@ public class MainActivity extends AppCompatActivity{
                         }
                     });
         }
+
         if(logKey==1) {
             logBtn.setTitle("Sign Out");
 
