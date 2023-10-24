@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this, NovelBook.class);
+                intent.putExtra("tag",mAuth.getCurrentUser().getUid());
                 startActivity(intent);
             }
         });
@@ -139,6 +140,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this, PoetryBook.class);
+                intent.putExtra("tag",mAuth.getCurrentUser().getUid());
                 startActivity(intent);
             }
         });
@@ -147,6 +149,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this, Mystery.class);
+                intent.putExtra("tag",mAuth.getCurrentUser().getUid());
                 startActivity(intent);
             }
         });
@@ -155,6 +158,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this, Religious.class);
+                intent.putExtra("tag",mAuth.getCurrentUser().getUid());
                 startActivity(intent);
             }
         });
@@ -163,6 +167,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,page7_Activity.class);
+                intent.putExtra("tag",mAuth.getCurrentUser().getUid());
                 startActivity(intent);
             }
         });

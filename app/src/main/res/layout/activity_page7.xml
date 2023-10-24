@@ -8,6 +8,16 @@
     tools:context=".page7_Activity">
 
 
+    <ProgressBar
+        android:id="@+id/progressBarId"
+        android:layout_width="207dp"
+        android:layout_height="87dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rview"
+        app:layout_constraintEnd_toEndOf="@+id/rview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rview"
+        app:layout_constraintVertical_bias="0.52" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarup"
         android:layout_width="482dp"

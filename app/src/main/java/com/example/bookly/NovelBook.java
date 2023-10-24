@@ -27,6 +27,7 @@ public class NovelBook extends AppCompatActivity {
     private FirebaseFirestore db;
     myAdapter adapter;
     private ProgressBar progressBar;
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +40,14 @@ public class NovelBook extends AppCompatActivity {
         ColorDrawable color =new ColorDrawable(Color.parseColor("#FFD700"));
         getSupportActionBar().setBackgroundDrawable(color);
 
+        Bundle bundle =getIntent().getExtras();
+        if(bundle != null) uid=bundle.getString("tag");
+        else uid="";
+
         recyclerView=findViewById(R.id.recycleBook);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         dataList=new ArrayList<>();
-        adapter=new myAdapter(this,dataList);
+        adapter=new myAdapter(this,dataList,uid);
         recyclerView.setAdapter(adapter);
         progressBar=findViewById(R.id.progbar);
 

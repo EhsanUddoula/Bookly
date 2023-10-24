@@ -35,7 +35,7 @@ public class NovelModel {
     }
 
     public String getPrice() {
-        return price+" TK";
+        return price+" Tk";
     }
 
     public void setPrice(double price) {

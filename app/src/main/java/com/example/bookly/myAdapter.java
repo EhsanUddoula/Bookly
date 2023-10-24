@@ -1,6 +1,8 @@
 package com.example.bookly;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,22 +18,31 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
     private ArrayList<NovelModel> dataList;
     private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
+
+    //private ProgressBar progressBar;
+
+    private String uid;
+
 
     Context context;
 
-    public myAdapter(Context context,ArrayList<NovelModel> dataList){
+    public myAdapter(Context context,ArrayList<NovelModel> dataList,String uid){
         this.context=context;
         this.dataList=dataList;
+        this.uid=uid;
     }
 
     @NonNull
@@ -54,7 +66,41 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
 
         boolean isExpandable=dataList.get(position).isExpanded();
         holder.expand.setVisibility(isExpandable ? View.VISIBLE :View.GONE);
+        holder.addCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addToCart(model);
+            }
+        });
+    }
 
+    private void addToCart(NovelModel model) {
+        db = FirebaseFirestore.getInstance();
+
+        if(uid == null){
+            Toast.makeText(context.getApplicationContext(), "Please login first...",Toast.LENGTH_SHORT).show();
+            //Intent intent= new Intent(context, loginActivity.class);
+        }
+        else {
+            //progressBar.setVisibility(View.VISIBLE);
+            HashMap<String,Object>cart =new HashMap<>();
+
+            cart.put("bookPic",model.getImage());
+            cart.put("bookName",model.getBook());
+            cart.put("writer",model.getWriter());
+            cart.put("price",model.getPrice());
+            cart.put("amount",1);
+
+            //CartItem cart=new CartItem(bookPic,bookName,write,pr,1);
+            db.collection("Cart").document(uid).collection("currentUser").add(cart)
+                    .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentReference> task) {
+                            //progressBar.setVisibility(View.GONE);
+                            Toast.makeText(context.getApplicationContext(), "Added to cart",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
     }
 
     @Override
@@ -77,6 +123,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
             details=itemView.findViewById(R.id.details);
             expand=itemView.findViewById(R.id.expandable);
             addCart=itemView.findViewById(R.id.addToCart);
+            //progressBar=itemView.findViewById(R.id.progbar);
 
             imageName.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -87,16 +134,6 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
                 }
             });
 
-            addCart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    NovelModel model= dataList.get(getAdapterPosition());
-                    db = FirebaseFirestore.getInstance();
-                    FirebaseUser currentUser=mAuth.getCurrentUser();
-                    String uid= currentUser.getUid();
-                    //db.collection("Cart").document("uid").collection("currentUser").add();
-                }
-            });
         }
     }
 }

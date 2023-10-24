@@ -5,12 +5,12 @@ public class CartItem {
     private String bookName;
     private String writer;
     private String price;
-    private String amount;
+    private int amount;
 
     public CartItem() {
     }
 
-    public CartItem(String bookPic, String bookName, String writer, String price, String amount) {
+    public CartItem(String bookPic, String bookName, String writer, String price, int amount) {
         this.bookPic = bookPic;
         this.bookName = bookName;
         this.writer = writer;
@@ -43,18 +43,18 @@ public class CartItem {
     }
 
     public String getPrice() {
-        return price;
+        return price + " Tk";
     }
 
     public void setPrice(String price) {
         this.price = price;
     }
 
-    public String getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 }
