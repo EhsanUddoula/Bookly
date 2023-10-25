@@ -35,7 +35,7 @@ public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.CartVi
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        CartItem cartItem=new CartItem();
+        CartItem cartItem=dataList.get(position);
         holder.bookNameView.setText(dataList.get(position).getBookName());
         holder.writerView.setText(dataList.get(position).getWriter());
         holder.priceView.setText(dataList.get(position).getPrice());
@@ -44,7 +44,7 @@ public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.CartVi
         Glide.with(context)
                 .load(cartItem.getBookPic())
                 .error(R.drawable.app_icon)// Assuming you have a method to get the image URL from NovelModel
-                .into(holder.bookPicView);
+                .into(holder.bookPic);
     }
 
     @Override
@@ -53,12 +53,12 @@ public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.CartVi
     }
 
     class CartViewHolder extends RecyclerView.ViewHolder {
-        ImageView bookPicView;
+        ImageView bookPic;
         TextView bookNameView,writerView,priceView,amountView;
 
         public CartViewHolder(@NonNull View itemView){
             super(itemView);
-            bookPicView=itemView.findViewById(R.id.bookPic);
+            bookPic=itemView.findViewById(R.id.bookPic);
             bookNameView=itemView.findViewById(R.id.bookNameCart);
             writerView=itemView.findViewById(R.id.writer);
             priceView=itemView.findViewById(R.id.priceBook);
