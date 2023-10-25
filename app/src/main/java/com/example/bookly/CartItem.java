@@ -1,16 +1,16 @@
 package com.example.bookly;
 
 public class CartItem {
-    private static String bookPic;
+    private String bookPic;
     private String bookName;
     private String writer;
     private String price;
-    private int amount;
+    private String amount;
 
     public CartItem() {
     }
 
-    public CartItem(String bookPic, String bookName, String writer, String price, int amount) {
+    public CartItem(String bookPic, String bookName, String writer, String price, String amount) {
         this.bookPic = bookPic;
         this.bookName = bookName;
         this.writer = writer;
@@ -22,7 +22,7 @@ public class CartItem {
         this.bookPic = bookPic;
     }
 
-    public static String getBookPic() {
+    public String getBookPic() {
         return bookPic;
     }
 
@@ -43,18 +43,18 @@ public class CartItem {
     }
 
     public String getPrice() {
-        return price + " Tk";
+        return price;
     }
 
     public void setPrice(String price) {
         this.price = price;
     }
 
-    public int getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 }

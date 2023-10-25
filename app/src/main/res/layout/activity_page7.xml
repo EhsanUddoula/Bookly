@@ -10,12 +10,13 @@
 
     <ProgressBar
         android:id="@+id/progressBarId"
-        android:layout_width="207dp"
-        android:layout_height="87dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rview"
-        app:layout_constraintEnd_toEndOf="@+id/rview"
+        android:layout_width="195dp"
+        android:layout_height="82dp"
+        app:layout_constraintBottom_toBottomOf="@+id/recycleView"
+        app:layout_constraintEnd_toEndOf="@+id/recycleView"
+        app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rview"
+        app:layout_constraintTop_toTopOf="@+id/recycleView"
         app:layout_constraintVertical_bias="0.52" />
 
     <androidx.appcompat.widget.Toolbar
@@ -124,7 +125,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rview"
+        android:id="@+id/recycleView"
         android:layout_width="370dp"
         android:layout_height="450dp"
         app:layout_constraintBottom_toBottomOf="parent"

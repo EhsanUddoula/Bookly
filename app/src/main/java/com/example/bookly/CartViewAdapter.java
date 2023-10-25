@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -36,13 +35,14 @@ public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.CartVi
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
+        CartItem cartItem=new CartItem();
         holder.bookNameView.setText(dataList.get(position).getBookName());
         holder.writerView.setText(dataList.get(position).getWriter());
         holder.priceView.setText(dataList.get(position).getPrice());
         holder.amountView.setText(dataList.get(position).getAmount());
 
         Glide.with(context)
-                .load(CartItem.getBookPic())
+                .load(cartItem.getBookPic())
                 .error(R.drawable.app_icon)// Assuming you have a method to get the image URL from NovelModel
                 .into(holder.bookPicView);
     }
@@ -54,15 +54,14 @@ public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.CartVi
 
     class CartViewHolder extends RecyclerView.ViewHolder {
         ImageView bookPicView;
-        TextView bookNameView,writerView,priceView,copiesView,amountView;
+        TextView bookNameView,writerView,priceView,amountView;
 
         public CartViewHolder(@NonNull View itemView){
             super(itemView);
-            bookPicView=itemView.findViewById(R.id.bookpic);
-            bookNameView=itemView.findViewById(R.id.bookname);
+            bookPicView=itemView.findViewById(R.id.bookPic);
+            bookNameView=itemView.findViewById(R.id.bookNameCart);
             writerView=itemView.findViewById(R.id.writer);
-            priceView=itemView.findViewById(R.id.price);
-            copiesView=itemView.findViewById(R.id.copies);
+            priceView=itemView.findViewById(R.id.priceBook);
             amountView=itemView.findViewById(R.id.amount);
         }
     }

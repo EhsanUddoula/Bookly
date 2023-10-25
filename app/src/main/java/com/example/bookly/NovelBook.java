@@ -64,6 +64,7 @@ public class NovelBook extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         for(DocumentSnapshot d:list){
                             NovelModel obj=d.toObject(NovelModel.class);
+                            Log.d("tagNovel", "DocumentSnapshot data: " + d.getData());
                             dataList.add(obj);
                         }
                         //update adapter

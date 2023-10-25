@@ -89,7 +89,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
             cart.put("bookName",model.getBook());
             cart.put("writer",model.getWriter());
             cart.put("price",model.getPrice());
-            cart.put("amount",1);
+            cart.put("amount","1");
 
             //CartItem cart=new CartItem(bookPic,bookName,write,pr,1);
             db.collection("Cart").document(uid).collection("currentUser").add(cart)

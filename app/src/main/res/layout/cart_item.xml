@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/bookpic"
+        android:id="@+id/bookPic"
         android:layout_width="76dp"
         android:layout_height="102dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,7 +67,7 @@
         app:srcCompat="@drawable/cross_24" />
 
     <TextView
-        android:id="@+id/bookname"
+        android:id="@+id/bookNameCart"
         android:layout_width="190dp"
         android:layout_height="24dp"
         android:text="Books name"
@@ -105,7 +105,7 @@
         android:layout_height="21dp"
         android:text="Price -   "
         android:textAlignment="viewStart"
-        android:textColor="#0E497C"
+        android:textColor="#03D615"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -116,12 +116,12 @@
         app:layout_constraintVertical_bias="0.68" />
 
     <TextView
-        android:id="@+id/price"
+        android:id="@+id/priceBook"
         android:layout_width="75dp"
         android:layout_height="21dp"
         android:text="250 tk"
         android:textAlignment="viewStart"
-        android:textColor="#0E497C"
+        android:textColor="#03D615"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -54,7 +55,7 @@ public class page7_Activity extends AppCompatActivity {
 //        items.add(new Cart_Item(R.drawable.variety,"Variety","Colleen Hoover","100","1","1"));
 //        items.add(new Cart_Item(R.drawable.allyourperfects,"All Your Perfects","Colleen Hoover","100","5","1"));
 //        items.add(new Cart_Item(R.drawable.allyourperfects,"All Your Perfects","Colleen Hoover","100","8","1"));
-        recyclerView = findViewById(R.id.rview);
+        recyclerView = findViewById(R.id.recycleView);
         progressBar = findViewById(R.id.progressBarId);
         dataList  = new ArrayList<>();
         adapter =new CartViewAdapter(this,dataList);
@@ -63,18 +64,22 @@ public class page7_Activity extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
         db= FirebaseFirestore.getInstance();
-        db.collection("Cart").document("x6l3lx3HC2QhZRAwpB1AmTA83Yw2").collection("currentUser").get()
+        db.collection("Cart").document(uid).collection("currentUser").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
                         progressBar.setVisibility(View.GONE);
                         for(DocumentSnapshot d:list){
+                            Log.d("tag", "DocumentSnapshot data: " + d.getData());
                             CartItem obj=d.toObject(CartItem.class);
                             dataList.add(obj);
+                            Log.d("tag2", "Object added... ");
                         }
                         //update adapter
                         adapter.notifyDataSetChanged();
+                        Log.d("tag3", "Adapter Added...");
                     }
                 });
 
