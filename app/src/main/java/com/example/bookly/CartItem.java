@@ -5,17 +5,26 @@ public class CartItem {
     private String bookName;
     private String writer;
     private String price;
-    private String amount;
+    private String amount,bookId;
 
     public CartItem() {
     }
 
-    public CartItem(String bookPic, String bookName, String writer, String price, String amount) {
+    public CartItem(String bookPic, String bookName, String writer, String price, String amount,String bookId) {
         this.bookPic = bookPic;
         this.bookName = bookName;
         this.writer = writer;
         this.price = price;
         this.amount = amount;
+        this.bookId=bookId;
+    }
+
+    public String getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
     }
 
     public void setBookPic(String bookPic) {

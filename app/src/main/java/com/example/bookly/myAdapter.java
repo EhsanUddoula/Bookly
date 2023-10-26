@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -89,15 +91,21 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
             cart.put("bookName",model.getBook());
             cart.put("writer",model.getWriter());
             cart.put("price",model.getPrice());
+            cart.put("bookId",model.getBookId());
             cart.put("amount","1");
 
-            //CartItem cart=new CartItem(bookPic,bookName,write,pr,1);
-            db.collection("Cart").document(uid).collection("currentUser").add(cart)
-                    .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+            db.collection("Cart").document(uid).collection("currentUser").document(model.getBookId()).set(cart)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
-                        public void onComplete(@NonNull Task<DocumentReference> task) {
-                            //progressBar.setVisibility(View.GONE);
-                            Toast.makeText(context.getApplicationContext(), "Added to cart",Toast.LENGTH_SHORT).show();
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(context.getApplicationContext(), "Added to Cart...",Toast.LENGTH_SHORT).show();
+                            Log.d("tag0", "DocumentSnapshot successfully written!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("tag0", "Error writing document", e);
                         }
                     });
         }

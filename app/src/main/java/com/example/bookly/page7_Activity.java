@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +34,8 @@ public class page7_Activity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FirebaseFirestore db;
     private String uid;
+    private TextView total;
+    private double TotalCost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,21 +52,16 @@ public class page7_Activity extends AppCompatActivity {
         if(bundle != null) uid=bundle.getString("tag");
         else uid="";
 
-//        items.add(new Cart_Item(R.drawable.allyourperfects,"All Your Perfects","Colleen Hoover","250","10","1"));
-//        items.add(new Cart_Item(R.drawable.thealchemist,"The Alchemist","Paulo Coelho","100","15","2"));
-//        items.add(new Cart_Item(R.drawable.thesilentpatient,"The Silent Patient","Alex Michaelides","200","2","1"));
-//        items.add(new Cart_Item(R.drawable.variety,"Variety","Colleen Hoover","100","1","1"));
-//        items.add(new Cart_Item(R.drawable.allyourperfects,"All Your Perfects","Colleen Hoover","100","5","1"));
-//        items.add(new Cart_Item(R.drawable.allyourperfects,"All Your Perfects","Colleen Hoover","100","8","1"));
         recyclerView = findViewById(R.id.recycleView);
         progressBar = findViewById(R.id.progressBarId);
         dataList  = new ArrayList<>();
-        adapter =new CartViewAdapter(this,dataList);
+        adapter =new CartViewAdapter(this,dataList,uid);
         recyclerView.setLayoutManager((new LinearLayoutManager(this)));
         recyclerView.setAdapter(adapter);
 
         progressBar.setVisibility(View.VISIBLE);
         db= FirebaseFirestore.getInstance();
+        TotalCost= 10;
         db.collection("Cart").document(uid).collection("currentUser").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 
@@ -75,11 +73,12 @@ public class page7_Activity extends AppCompatActivity {
                             Log.d("tag", "DocumentSnapshot data: " + d.getData());
                             CartItem obj=d.toObject(CartItem.class);
                             dataList.add(obj);
-                            Log.d("tag2", "Object added... ");
+                            Log.d("tag2", "Object added... " + Double.parseDouble(obj.getPrice().replaceAll("[^\\d.]","")));
                         }
                         //update adapter
                         adapter.notifyDataSetChanged();
                         Log.d("tag3", "Adapter Added...");
+                        calculateTotal(dataList);
                     }
                 });
 
@@ -104,4 +103,14 @@ public class page7_Activity extends AppCompatActivity {
 
 
     }
+
+    private void calculateTotal(ArrayList<CartItem> dataList) {
+        TotalCost=0.0;
+        total=findViewById(R.id.totalprice);
+        for(CartItem item: dataList){
+            TotalCost+= Double.parseDouble(item.getPrice().replaceAll("[^\\d.]",""));
+        }
+        total.setText(TotalCost+ " Tk");
+    }
+
 }

@@ -1,21 +1,33 @@
 package com.example.bookly;
 
+
 public class NovelModel {
     private String book,writer,image,description;
     private double price;
 
     private  boolean isExpanded;
+    private String bookId;
 
     public NovelModel() {
+
     }
 
-    public NovelModel(String book, String writer,String image,double price,String description) {
+    public NovelModel(String book, String writer, String image, double price, String description, String bookId) {
         this.book = book;
         this.writer = writer;
         this.image=image;
         this.price=price;
         this.description=description;
+        this.bookId=bookId;
         this.isExpanded=false;
+    }
+
+    public String getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
     }
 
     public String getDescription() {
