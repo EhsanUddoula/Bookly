@@ -30,11 +30,11 @@ import java.util.List;
 public class page7_Activity extends AppCompatActivity {
     private ArrayList<CartItem>dataList;
     CartViewAdapter adapter;
-    private ProgressBar progressBar;
+    public ProgressBar progressBar;
     private RecyclerView recyclerView;
     private FirebaseFirestore db;
     private String uid;
-    private TextView total;
+    public TextView total;
     private double TotalCost;
 
     @Override
@@ -54,14 +54,14 @@ public class page7_Activity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycleView);
         progressBar = findViewById(R.id.progressBarId);
+        total=findViewById(R.id.totalprice);
         dataList  = new ArrayList<>();
-        adapter =new CartViewAdapter(this,dataList,uid);
+        adapter =new CartViewAdapter(this,dataList,uid,total,progressBar);
         recyclerView.setLayoutManager((new LinearLayoutManager(this)));
         recyclerView.setAdapter(adapter);
 
         progressBar.setVisibility(View.VISIBLE);
         db= FirebaseFirestore.getInstance();
-        TotalCost= 10;
         db.collection("Cart").document(uid).collection("currentUser").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 
@@ -106,7 +106,6 @@ public class page7_Activity extends AppCompatActivity {
 
     private void calculateTotal(ArrayList<CartItem> dataList) {
         TotalCost=0.0;
-        total=findViewById(R.id.totalprice);
         for(CartItem item: dataList){
             TotalCost+= Double.parseDouble(item.getPrice().replaceAll("[^\\d.]",""));
         }

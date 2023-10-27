@@ -34,17 +34,18 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
     private ArrayList<NovelModel> dataList;
     private FirebaseFirestore db;
 
-    //private ProgressBar progressBar;
+    private ProgressBar progressBar;
 
     private String uid;
 
 
     Context context;
 
-    public myAdapter(Context context,ArrayList<NovelModel> dataList,String uid){
+    public myAdapter(Context context,ArrayList<NovelModel> dataList,String uid,ProgressBar progressBar){
         this.context=context;
         this.dataList=dataList;
         this.uid=uid;
+        this.progressBar=progressBar;
     }
 
     @NonNull
@@ -84,7 +85,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
             //Intent intent= new Intent(context, loginActivity.class);
         }
         else {
-            //progressBar.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
             HashMap<String,Object>cart =new HashMap<>();
 
             cart.put("bookPic",model.getImage());
@@ -100,6 +101,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
                         public void onSuccess(Void unused) {
                             Toast.makeText(context.getApplicationContext(), "Added to Cart...",Toast.LENGTH_SHORT).show();
                             Log.d("tag0", "DocumentSnapshot successfully written!");
+                            progressBar.setVisibility(View.GONE);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

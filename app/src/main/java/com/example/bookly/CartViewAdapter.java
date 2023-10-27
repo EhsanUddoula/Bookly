@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,12 +32,16 @@ public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.CartVi
     private ArrayList<CartItem> dataList;
     private FirebaseFirestore db;
     private String uid;
+    private TextView total;
+    private ProgressBar progressBar;
     Context context;
 
-    public CartViewAdapter(Context context, ArrayList<CartItem> dataList,String uid) {
+    public CartViewAdapter(Context context, ArrayList<CartItem> dataList,String uid,TextView total,ProgressBar progressBar) {
         this.context = context;
         this.dataList = dataList;
         this.uid=uid;
+        this.total=total;
+        this.progressBar=progressBar;
     }
     @NonNull
     @Override
@@ -63,12 +68,62 @@ public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.CartVi
                 deleteCart(cartItem,position);
             }
         });
+        holder.add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                incrementAmount(cartItem,position);
+            }
+        });
+        holder.remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                decrementAmount(cartItem,position);
+            }
+        });
+    }
+
+    private void decrementAmount(CartItem cartItem, int position) {
+        progressBar.setVisibility(View.VISIBLE);
+        int count= Integer.parseInt( dataList.get(position).getAmount());
+        if(count>1) {
+            count--;
+            db = FirebaseFirestore.getInstance();
+            db.collection("Cart").document(uid).collection("currentUser").document(cartItem.getBookId()).update("amount", Integer.toString(count))
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.d("update", "DocumentSnapshot successfully updated!");
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    });
+            dataList.get(position).setAmount(Integer.toString(count));
+            notifyDataSetChanged();
+            updateTotal();
+        }
+    }
+
+    private void incrementAmount(CartItem cartItem, int position) {
+        progressBar.setVisibility(View.VISIBLE);
+        int count= Integer.parseInt( dataList.get(position).getAmount());
+        count++;
+        db = FirebaseFirestore.getInstance();
+        db.collection("Cart").document(uid).collection("currentUser").document(cartItem.getBookId()).update("amount",Integer.toString(count))
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Log.d("update", "DocumentSnapshot successfully updated!");
+                                progressBar.setVisibility(View.GONE);
+                            }
+                        });
+        dataList.get(position).setAmount(Integer.toString(count));
+        notifyDataSetChanged();
+        updateTotal();
     }
 
     private void deleteCart(CartItem cartItem,int position) {
         db = FirebaseFirestore.getInstance();
 
-
+        progressBar.setVisibility(View.VISIBLE);
         if(uid == null){
             Toast.makeText(context.getApplicationContext(), "Please login first...",Toast.LENGTH_SHORT).show();
             //Intent intent= new Intent(context, loginActivity.class);
@@ -79,9 +134,12 @@ public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.CartVi
                        @Override
                        public void onSuccess(Void unused) {
                            Log.d("deleteCart", "DocumentSnapshot successfully deleted!");
+                           progressBar.setVisibility(View.GONE);
                            notifyDataSetChanged();
                            dataList.remove(position);
+                           notifyItemRemoved(position);
                            Toast.makeText(context.getApplicationContext(), "Removed from Cart",Toast.LENGTH_SHORT).show();
+                           updateTotal();
                        }
                    })
                    .addOnFailureListener(new OnFailureListener() {
@@ -94,13 +152,25 @@ public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.CartVi
         }
     }
 
+    private void updateTotal() {
+        double TotalCost=0.0;
+        double cost;
+        Log.d("price","inside updateTotal..");
+        for(CartItem item: dataList){
+            cost = Double.parseDouble(item.getPrice().replaceAll("[^\\d.]",""))*Integer.parseInt(item.getAmount());
+            TotalCost += cost;
+        }
+        Log.d("price1","after data read..."+ TotalCost);
+        total.setText(TotalCost+ " Tk");
+    }
+
     @Override
     public int getItemCount() {
         return dataList.size();
     }
 
     class CartViewHolder extends RecyclerView.ViewHolder {
-        ImageView bookPic,delete;
+        ImageView bookPic,delete,add,remove;
         TextView bookNameView,writerView,priceView,amountView;
 
         public CartViewHolder(@NonNull View itemView){
@@ -111,6 +181,8 @@ public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.CartVi
             priceView=itemView.findViewById(R.id.priceBook);
             amountView=itemView.findViewById(R.id.amount);
             delete=itemView.findViewById(R.id.remove);
+            add=itemView.findViewById(R.id.plus);
+            remove=itemView.findViewById(R.id.minus);
         }
     }
 }

@@ -45,11 +45,12 @@ public class NovelBook extends AppCompatActivity {
         else uid="";
 
         recyclerView=findViewById(R.id.recycleBook);
+        progressBar=findViewById(R.id.progbar);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         dataList=new ArrayList<>();
-        adapter=new myAdapter(this,dataList,uid);
+        adapter=new myAdapter(this,dataList,uid,progressBar);
         recyclerView.setAdapter(adapter);
-        progressBar=findViewById(R.id.progbar);
+
 
         progressBar.setVisibility(View.VISIBLE);
 
