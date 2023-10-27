@@ -41,8 +41,12 @@ public class NovelBook extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(color);
 
         Bundle bundle =getIntent().getExtras();
-        if(bundle != null) uid=bundle.getString("tag");
-        else uid="";
+        if(bundle != null) {
+            String identity=bundle.getString("tag");
+            if(identity.equals("DidNotLog")){
+                uid="DidNotLog";
+            }else uid=identity;
+        }
 
         recyclerView=findViewById(R.id.recycleBook);
         progressBar=findViewById(R.id.progbar);

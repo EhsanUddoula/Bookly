@@ -72,45 +72,44 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
         holder.addCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addToCart(model);
+                if(uid.equals("DidNotLog")){
+                    Toast.makeText(context.getApplicationContext(), "Please login first...",Toast.LENGTH_SHORT).show();
+                    Intent intent= new Intent(holder.addCart.getContext(), loginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    holder.addCart.getContext().startActivity(intent);
+                }
+                else addToCart(model);
             }
         });
     }
 
     private void addToCart(NovelModel model) {
         db = FirebaseFirestore.getInstance();
+        progressBar.setVisibility(View.VISIBLE);
+        HashMap<String,Object>cart =new HashMap<>();
 
-        if(uid == null){
-            Toast.makeText(context.getApplicationContext(), "Please login first...",Toast.LENGTH_SHORT).show();
-            //Intent intent= new Intent(context, loginActivity.class);
-        }
-        else {
-            progressBar.setVisibility(View.VISIBLE);
-            HashMap<String,Object>cart =new HashMap<>();
+        cart.put("bookPic",model.getImage());
+        cart.put("bookName",model.getBook());
+        cart.put("writer",model.getWriter());
+        cart.put("price",model.getPrice());
+        cart.put("bookId",model.getBookId());
+        cart.put("amount","1");
 
-            cart.put("bookPic",model.getImage());
-            cart.put("bookName",model.getBook());
-            cart.put("writer",model.getWriter());
-            cart.put("price",model.getPrice());
-            cart.put("bookId",model.getBookId());
-            cart.put("amount","1");
-
-            db.collection("Cart").document(uid).collection("currentUser").document(model.getBookId()).set(cart)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            Toast.makeText(context.getApplicationContext(), "Added to Cart...",Toast.LENGTH_SHORT).show();
-                            Log.d("tag0", "DocumentSnapshot successfully written!");
-                            progressBar.setVisibility(View.GONE);
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w("tag0", "Error writing document", e);
-                        }
-                    });
-        }
+        db.collection("Cart").document(uid).collection("currentUser").document(model.getBookId()).set(cart)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(context.getApplicationContext(), "Added to Cart...",Toast.LENGTH_SHORT).show();
+                        Log.d("tag0", "DocumentSnapshot successfully written!");
+                        progressBar.setVisibility(View.GONE);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("tag0", "Error writing document", e);
+                    }
+                });
     }
 
     @Override
@@ -133,7 +132,6 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
             details=itemView.findViewById(R.id.details);
             expand=itemView.findViewById(R.id.expandable);
             addCart=itemView.findViewById(R.id.addToCart);
-            //progressBar=itemView.findViewById(R.id.progbar);
 
             imageName.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -70,8 +70,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-            //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                // WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
@@ -131,7 +130,10 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this, NovelBook.class);
-                intent.putExtra("tag",mAuth.getCurrentUser().getUid());
+                FirebaseUser currentUser=mAuth.getCurrentUser();
+                if(currentUser != null)
+                    intent.putExtra("tag",currentUser.getUid());
+                else  intent.putExtra("tag","DidNotLog");
                 startActivity(intent);
             }
         });
@@ -140,7 +142,10 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this, PoetryBook.class);
-                intent.putExtra("tag",mAuth.getCurrentUser().getUid());
+                FirebaseUser currentUser=mAuth.getCurrentUser();
+                if(currentUser != null)
+                    intent.putExtra("tag",currentUser.getUid());
+                else  intent.putExtra("tag","DidNotLog");
                 startActivity(intent);
             }
         });
@@ -149,7 +154,10 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this, Mystery.class);
-                intent.putExtra("tag",mAuth.getCurrentUser().getUid());
+                FirebaseUser currentUser=mAuth.getCurrentUser();
+                if(currentUser != null)
+                    intent.putExtra("tag",currentUser.getUid());
+                else  intent.putExtra("tag","DidNotLog");
                 startActivity(intent);
             }
         });
@@ -158,7 +166,10 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this, Religious.class);
-                intent.putExtra("tag",mAuth.getCurrentUser().getUid());
+                FirebaseUser currentUser=mAuth.getCurrentUser();
+                if(currentUser != null)
+                    intent.putExtra("tag",currentUser.getUid());
+                else  intent.putExtra("tag","DidNotLog");
                 startActivity(intent);
             }
         });
@@ -166,9 +177,17 @@ public class MainActivity extends AppCompatActivity{
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,page7_Activity.class);
-                intent.putExtra("tag",mAuth.getCurrentUser().getUid());
-                startActivity(intent);
+                FirebaseUser currentUser=mAuth.getCurrentUser();
+                if(currentUser != null) {
+                    Intent intent = new Intent(MainActivity.this,page7_Activity.class);
+                    intent.putExtra("tag", currentUser.getUid());
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Please Log In First...",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, loginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

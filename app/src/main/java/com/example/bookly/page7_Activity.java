@@ -50,7 +50,6 @@ public class page7_Activity extends AppCompatActivity {
 
         Bundle bundle =getIntent().getExtras();
         if(bundle != null) uid=bundle.getString("tag");
-        else uid="";
 
         recyclerView = findViewById(R.id.recycleView);
         progressBar = findViewById(R.id.progressBarId);
