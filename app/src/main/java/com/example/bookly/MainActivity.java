@@ -21,6 +21,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.interfaces.ItemClickListener;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +38,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.ktx.Firebase;
+
+import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +57,7 @@ public class MainActivity extends AppCompatActivity{
 
     popAdapter adapter;
 
-    private ImageView Novel,Poetry,mystery_book,religious,cart;
+    private ImageView Novel,Poetry,mystery_book,religious,cart,top1,top2,top3,top4;
     @Override
     public void onStart() {
         super.onStart();
@@ -121,8 +127,13 @@ public class MainActivity extends AppCompatActivity{
         mystery_book=findViewById(R.id.cat3_mystery);
         religious=findViewById(R.id.cat4_religious);
         cart=findViewById(R.id.appbar_cart);
+        top1=findViewById(R.id.Top1);
+        top2=findViewById(R.id.Top2);
+        top3=findViewById(R.id.Top3);
+        top4=findViewById(R.id.Top4);
 
         popularBookView();
+        advertiseView();
 
         Bundle bundle=getIntent().getExtras();
         if(bundle!=null){
@@ -217,6 +228,54 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+        //top 4 categories listener
+        top1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, NovelBook.class);
+                FirebaseUser currentUser=mAuth.getCurrentUser();
+                if(currentUser != null)
+                    intent.putExtra("tag",currentUser.getUid());
+                else  intent.putExtra("tag","DidNotLog");
+                startActivity(intent);
+            }
+        });
+        top2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, Mystery.class);
+                FirebaseUser currentUser=mAuth.getCurrentUser();
+                if(currentUser != null)
+                    intent.putExtra("tag",currentUser.getUid());
+                else  intent.putExtra("tag","DidNotLog");
+                startActivity(intent);
+            }
+        });
+
+        top3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, NovelBook.class);
+                FirebaseUser currentUser=mAuth.getCurrentUser();
+                if(currentUser != null)
+                    intent.putExtra("tag",currentUser.getUid());
+                else  intent.putExtra("tag","DidNotLog");
+                startActivity(intent);
+            }
+        });
+
+        top4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, Religious.class);
+                FirebaseUser currentUser=mAuth.getCurrentUser();
+                if(currentUser != null)
+                    intent.putExtra("tag",currentUser.getUid());
+                else  intent.putExtra("tag","DidNotLog");
+                startActivity(intent);
+            }
+        });
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -268,6 +327,27 @@ public class MainActivity extends AppCompatActivity{
 
 
                 return true;
+            }
+        });
+    }
+
+    private void advertiseView() {
+        ArrayList<SlideModel> imageList=new ArrayList<>();
+
+        imageList.add(new SlideModel("https://bit.ly/2YoJ77H", "The animal population decreased by 58 percent in 42 years.",ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel("https://bit.ly/2BteuF2", "Elephants and tigers may become extinct.",ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel("https://bit.ly/3fLJf72", "And people do that.",ScaleTypes.CENTER_CROP));
+        ImageSlider imageSlider=findViewById(R.id.image_slider);
+        imageSlider.setImageList(imageList);
+        imageSlider.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void doubleClick(int i) {
+
+            }
+
+            @Override
+            public void onItemSelected(int position) {
+                // You can listen here.
             }
         });
     }
