@@ -5,11 +5,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,7 +30,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.ktx.Firebase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
     private DrawerLayout drawer;
@@ -35,6 +45,11 @@ public class MainActivity extends AppCompatActivity{
     private FirebaseAuth mAuth;
     private static int logKey=0;
     private  String name="hello";
+    private RecyclerView recyclerView;
+    private ArrayList<popBook>dataList;
+    private FirebaseFirestore db;
+
+    popAdapter adapter;
 
     private ImageView Novel,Poetry,mystery_book,religious,cart;
     @Override
@@ -84,6 +99,15 @@ public class MainActivity extends AppCompatActivity{
 
         //setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
+
+        //for popular book view
+        recyclerView=findViewById(R.id.mainReview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
+        dataList=new ArrayList<>();
+        adapter=new popAdapter(this,dataList);
+        recyclerView.setAdapter(adapter);
+        //end here
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.nav_open, R.string.nav_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -97,6 +121,8 @@ public class MainActivity extends AppCompatActivity{
         mystery_book=findViewById(R.id.cat3_mystery);
         religious=findViewById(R.id.cat4_religious);
         cart=findViewById(R.id.appbar_cart);
+
+        popularBookView();
 
         Bundle bundle=getIntent().getExtras();
         if(bundle!=null){
@@ -244,6 +270,25 @@ public class MainActivity extends AppCompatActivity{
                 return true;
             }
         });
+    }
+
+    private void popularBookView() {
+        db=FirebaseFirestore.getInstance();
+        db.collection("popular").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> list=queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot d:list){
+                            popBook obj=d.toObject(popBook.class);
+                            Log.d("tag10", "DocumentSnapshot data: " + d.getData());
+                            dataList.add(obj);
+                        }
+                        //update adapter
+                        adapter.notifyDataSetChanged();
+                    }
+                });
     }
 
 }
