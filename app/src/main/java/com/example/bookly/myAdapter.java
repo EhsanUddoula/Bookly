@@ -81,6 +81,18 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
                 else addToCart(model);
             }
         });
+
+        holder.imageName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(holder.imageName.getContext(), BookDetails.class);
+                intent.putExtra("tag",uid);
+                intent.putExtra("collect",dataList.get(position).getGenre());
+                intent.putExtra("book",dataList.get(position).getBookId());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                holder.imageName.getContext().startActivity(intent);
+            }
+        });
     }
 
     private void addToCart(NovelModel model) {
@@ -119,7 +131,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
 
     class myViewHolder extends RecyclerView.ViewHolder{
 
-        TextView bookName,writerName,price,details;
+        TextView bookName,writerName,price,details,show;
         LinearLayout expand;
         ImageView imageName;
         Button addCart;
@@ -132,8 +144,9 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
             details=itemView.findViewById(R.id.details);
             expand=itemView.findViewById(R.id.expandable);
             addCart=itemView.findViewById(R.id.addToCart);
+            show=itemView.findViewById(R.id.copynumbers);
 
-            imageName.setOnClickListener(new View.OnClickListener() {
+            show.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     NovelModel model= dataList.get(getAdapterPosition());

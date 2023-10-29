@@ -1,201 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECECEC"
+    android:orientation="vertical"
     tools:context=".page9_pay_Activity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarup"
-        android:layout_width="415dp"
-        android:layout_height="76dp"
-        android:background="@color/mustard"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/uilayout"
+        android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/baseline_arrow_back_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.042"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.025" />
+        <TextView
+            android:id="@+id/NamePay"
+            android:layout_width="330dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="50dp"
+            android:text="Name"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="italic"/>
+        <TextView
+            android:id="@+id/EmailPay"
+            android:layout_width="330dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="50dp"
+            android:text="Email"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="italic"/>
+        <TextView
+            android:id="@+id/PricePay"
+            android:layout_width="330dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="50dp"
+            android:text="price"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="italic"/>
 
-    <TextView
-        android:id="@+id/paymentpage"
-        android:layout_width="200dp"
-        android:layout_height="42dp"
-        android:text="Payment Methods"
-        android:textAlignment="viewStart"
-        android:textColor="#0E497C"
-        android:textSize="21dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.341"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026" />
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:id="@+id/payIt"
+            android:text="PAY NOW"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="170dp"
+            android:textStyle="bold"
+            android:background="#E62222FF"/>
 
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="50dp"
+            android:text=""
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="normal"/>
+        <TextView
+            android:id="@+id/goToHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="50dp"
+            android:text=""
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="normal"/>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/orderidtext"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:text="Order ID : "
-        android:textAlignment="viewStart"
-        android:textColor="#000000"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.337"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.185" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/weblayout"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-    <TextView
-        android:id="@+id/totalprice"
-        android:layout_width="119dp"
-        android:layout_height="31dp"
-        android:text="105674"
-        android:textAlignment="center"
-        android:textColor="#0E497C"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.186" />
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/payview"/>
 
-
-
-    <ImageView
-        android:id="@+id/codimg"
-        android:layout_width="105dp"
-        android:layout_height="117dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.209"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.431"
-        app:srcCompat="@drawable/cod" />
+    </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/codtext"
-        android:layout_width="102dp"
-        android:layout_height="35dp"
-        android:text=" Nagad "
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="19sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.207"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.548" />
-
-    <ImageView
-        android:id="@+id/bkashimg"
-        android:layout_width="105dp"
-        android:layout_height="117dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.431"
-        app:srcCompat="@drawable/bkash" />
-
-    <TextView
-        android:id="@+id/bkashtext"
-        android:layout_width="102dp"
-        android:layout_height="35dp"
-        android:text=" Bkash "
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="19sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.77"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.548" />
-
-    <ImageView
-        android:id="@+id/nagadimg"
-        android:layout_width="105dp"
-        android:layout_height="117dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.209"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.723"
-        app:srcCompat="@drawable/nagad" />
-
-    <TextView
-        android:id="@+id/nagadtext"
-        android:layout_width="102dp"
-        android:layout_height="35dp"
-        android:text=" Nagad "
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.207"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.806" />
-
-    <ImageView
-        android:id="@+id/rocketimg"
-        android:layout_width="105dp"
-        android:layout_height="117dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.723"
-        app:srcCompat="@drawable/rocket" />
 
 
-    <TextView
-        android:id="@+id/rockettext"
-        android:layout_width="102dp"
-        android:layout_height="35dp"
-        android:text=" Rocket "
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="19sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.77"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.806" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

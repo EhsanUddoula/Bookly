@@ -43,4 +43,7 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
+    //uddokta pay
+    implementation ("com.github.uddoktapay:UddoktaPayAndroidSDK:ultra.2.0")
+    implementation ("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
 }

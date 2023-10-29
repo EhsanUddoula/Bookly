@@ -34,14 +34,17 @@ public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.CartVi
     private String uid;
     private TextView total;
     private ProgressBar progressBar;
+
+    private double TotalCost;
     Context context;
 
-    public CartViewAdapter(Context context, ArrayList<CartItem> dataList,String uid,TextView total,ProgressBar progressBar) {
+    public CartViewAdapter(Context context, ArrayList<CartItem> dataList,String uid,TextView total,ProgressBar progressBar,double TotalCost) {
         this.context = context;
         this.dataList = dataList;
         this.uid=uid;
         this.total=total;
         this.progressBar=progressBar;
+        this.TotalCost=TotalCost;
     }
     @NonNull
     @Override
@@ -153,7 +156,7 @@ public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.CartVi
     }
 
     private void updateTotal() {
-        double TotalCost=0.0;
+        TotalCost=0.0;
         double cost;
         Log.d("price","inside updateTotal..");
         for(CartItem item: dataList){

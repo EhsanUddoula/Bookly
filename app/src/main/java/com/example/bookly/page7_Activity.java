@@ -55,7 +55,7 @@ public class page7_Activity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBarId);
         total=findViewById(R.id.totalprice);
         dataList  = new ArrayList<>();
-        adapter =new CartViewAdapter(this,dataList,uid,total,progressBar);
+        adapter =new CartViewAdapter(this,dataList,uid,total,progressBar,TotalCost);
         recyclerView.setLayoutManager((new LinearLayoutManager(this)));
         recyclerView.setAdapter(adapter);
 
@@ -96,6 +96,8 @@ public class page7_Activity extends AppCompatActivity {
         placeOrderButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent= new Intent(page7_Activity.this, page8_placeOrder_Activity.class);
+                intent.putExtra("user",uid);
+                intent.putExtra("total",TotalCost+"Tk");
                 startActivity(intent);
             }
         });
