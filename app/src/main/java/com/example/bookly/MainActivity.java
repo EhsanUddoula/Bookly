@@ -324,6 +324,15 @@ public class MainActivity extends AppCompatActivity{
                     startActivity(intent);
                     drawer.closeDrawer(GravityCompat.START);
                 }
+                if(item.getItemId()==R.id.nav_my_wishlist){
+                    Intent intent=new Intent(MainActivity.this, FavouriteBook.class);
+                    FirebaseUser currentUser=mAuth.getCurrentUser();
+                    if(currentUser != null)
+                        intent.putExtra("tag",currentUser.getUid());
+                    else  intent.putExtra("tag","DidNotLog");
+                    startActivity(intent);
+                    drawer.closeDrawer(GravityCompat.START);
+                }
 
 
                 return true;

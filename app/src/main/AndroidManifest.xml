@@ -15,9 +15,13 @@
         android:theme="@style/Base.Theme.Bookly"
         tools:targetApi="31">
         <activity
-            android:name=".BookDetails"
+            android:name=".FavouriteBook"
             android:exported="false"
             android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".BookDetails"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".page9_pay_Activity"
             android:exported="false"

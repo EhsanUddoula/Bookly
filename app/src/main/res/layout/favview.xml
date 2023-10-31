@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="#FFFFD6">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/favImage"
+        android:layout_marginLeft="5dp"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:layout_width="252dp"
+            android:layout_height="30dp"
+            android:id="@+id/fabBook"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:textColor="#000000"
+            android:text="All your perfect"
+            android:textStyle="bold"
+            android:textSize="22sp"/>
+        <TextView
+            android:id="@+id/favWriter"
+            android:layout_width="187dp"
+            android:layout_height="23dp"
+            android:text="Colleen Hoover"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="17sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="35dp"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SHOW DETAILS"
+            android:id="@+id/favButton"
+            android:padding="3dp"
+            android:background="#B40DB559"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="20dp"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/favDelete"
+        android:src="@drawable/baseline_delete_24"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="50dp"/>
+
+</LinearLayout>

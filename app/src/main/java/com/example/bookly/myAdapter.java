@@ -93,6 +93,45 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
                 holder.imageName.getContext().startActivity(intent);
             }
         });
+
+        holder.favourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(uid.equals("DidNotLog")){
+                    Toast.makeText(context.getApplicationContext(), "Please login first...",Toast.LENGTH_SHORT).show();
+                    Intent intent= new Intent(holder.addCart.getContext(), loginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    holder.addCart.getContext().startActivity(intent);
+                }else addToFavourite(model);
+            }
+        });
+    }
+
+    private void addToFavourite(NovelModel model) {
+        db = FirebaseFirestore.getInstance();
+        progressBar.setVisibility(View.VISIBLE);
+        HashMap<String,Object>cart =new HashMap<>();
+        cart.put("bookPic",model.getImage());
+        cart.put("bookName",model.getBook());
+        cart.put("writer",model.getWriter());
+        cart.put("bookId",model.getBookId());
+        cart.put("genre",model.getGenre());
+
+        db.collection("Favourites").document(uid).collection("currentUser").document(model.getBookId()).set(cart)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(context.getApplicationContext(), "Added to Favourite...",Toast.LENGTH_SHORT).show();
+                        Log.d("tag0", "DocumentSnapshot successfully written!");
+                        progressBar.setVisibility(View.GONE);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("tag0", "Error writing document", e);
+                    }
+                });
     }
 
     private void addToCart(NovelModel model) {
@@ -133,7 +172,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
 
         TextView bookName,writerName,price,details,show;
         LinearLayout expand;
-        ImageView imageName;
+        ImageView imageName,favourite;
         Button addCart;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -145,6 +184,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
             expand=itemView.findViewById(R.id.expandable);
             addCart=itemView.findViewById(R.id.addToCart);
             show=itemView.findViewById(R.id.copynumbers);
+            favourite=itemView.findViewById(R.id.wish_undo);
 
             show.setOnClickListener(new View.OnClickListener() {
                 @Override
