@@ -7,11 +7,6 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_my_orders"
-            android:icon="@drawable/baseline_orders_24"
-            android:title="My Orders" />
-
-        <item
             android:id="@+id/nav_my_cart"
             android:icon="@drawable/baseline_shopping_cart_24_black"
             android:title="My Cart" />
@@ -55,6 +50,10 @@
             android:id="@+id/log_in"
             android:icon="@drawable/baseline_login_24"
             android:title="Sign In"/>
+        <item
+            android:id="@+id/nav_register"
+            android:icon="@drawable/baseline_how_to_reg_24"
+            android:title="Register"/>
 
 
 

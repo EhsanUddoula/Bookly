@@ -326,6 +326,25 @@ public class MainActivity extends AppCompatActivity{
                     startActivity(intent);
                     drawer.closeDrawer(GravityCompat.START);
                 }
+                if(item.getItemId()==R.id.nav_my_cart){
+                    FirebaseUser currentUser=mAuth.getCurrentUser();
+                    if(currentUser != null) {
+                        Intent intent = new Intent(MainActivity.this,page7_Activity.class);
+                        intent.putExtra("tag", currentUser.getUid());
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(),"Please Log In First...",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this, loginActivity.class);
+                        startActivity(intent);
+                    }
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+                if(item.getItemId()==R.id.nav_register){
+                    Intent intent=new Intent(MainActivity.this,registerActivity.class);
+                    startActivity(intent);
+                    drawer.closeDrawer(GravityCompat.START);
+                }
 
 
                 return true;

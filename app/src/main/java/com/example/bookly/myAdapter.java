@@ -3,6 +3,7 @@ package com.example.bookly;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,6 +72,34 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
 
         boolean isExpandable=dataList.get(position).isExpanded();
         holder.expand.setVisibility(isExpandable ? View.VISIBLE :View.GONE);
+
+        if(!uid.equals("DidNotLog")) {
+            db=FirebaseFirestore.getInstance();
+            db.collection("Cart").document(uid).collection("currentUser").document(model.getBookId()).get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.getResult().exists()) {
+                                  holder.addCart.setText("ADDED TO CART");
+                                  holder.addCart.setTextColor(Color.parseColor("#8BFF33"));
+                            }
+                        }
+                    });
+        }
+        if(!uid.equals("DidNotLog")){
+            db=FirebaseFirestore.getInstance();
+            db.collection("Favourites").document(uid).collection("currentUser").document(model.getBookId()).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                   @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.getResult().exists()) {
+                           holder.favourite.setVisibility(View.GONE);
+                           holder.fav1.setVisibility(View.VISIBLE);
+                        }
+                   }
+                });
+        }
+
         holder.addCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +109,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     holder.addCart.getContext().startActivity(intent);
                 }
-                else addToCart(model);
+                else addToCart(model,holder);
             }
         });
 
@@ -103,12 +134,12 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
                     Intent intent= new Intent(holder.addCart.getContext(), loginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     holder.addCart.getContext().startActivity(intent);
-                }else addToFavourite(model);
+                }else addToFavourite(model,holder);
             }
         });
     }
 
-    private void addToFavourite(NovelModel model) {
+    private void addToFavourite(NovelModel model,@NonNull myViewHolder holder) {
         db = FirebaseFirestore.getInstance();
         progressBar.setVisibility(View.VISIBLE);
         HashMap<String,Object>cart =new HashMap<>();
@@ -125,6 +156,8 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
                         Toast.makeText(context.getApplicationContext(), "Added to Favourite...",Toast.LENGTH_SHORT).show();
                         Log.d("tag0", "DocumentSnapshot successfully written!");
                         progressBar.setVisibility(View.GONE);
+                        holder.favourite.setVisibility(View.GONE);
+                        holder.fav1.setVisibility(View.VISIBLE);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -135,7 +168,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
                 });
     }
 
-    private void addToCart(NovelModel model) {
+    private void addToCart(NovelModel model,@NonNull myViewHolder holder) {
         db = FirebaseFirestore.getInstance();
         progressBar.setVisibility(View.VISIBLE);
         HashMap<String,Object>cart =new HashMap<>();
@@ -154,6 +187,8 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
                         Toast.makeText(context.getApplicationContext(), "Added to Cart...",Toast.LENGTH_SHORT).show();
                         Log.d("tag0", "DocumentSnapshot successfully written!");
                         progressBar.setVisibility(View.GONE);
+                        holder.addCart.setText("ADDED TO CART");
+                        holder.addCart.setTextColor(Color.parseColor("#8BFF33"));
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -173,7 +208,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
 
         TextView bookName,writerName,price,details,show;
         LinearLayout expand;
-        ImageView imageName,favourite;
+        ImageView imageName,favourite,fav1;
         Button addCart;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -186,6 +221,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
             addCart=itemView.findViewById(R.id.addToCart);
             show=itemView.findViewById(R.id.copynumbers);
             favourite=itemView.findViewById(R.id.wish_undo);
+            fav1=itemView.findViewById(R.id.addedFav);
 
             show.setOnClickListener(new View.OnClickListener() {
                 @Override
