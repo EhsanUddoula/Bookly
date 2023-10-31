@@ -1,18 +1,24 @@
 package com.example.bookly;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.help5g.uddoktapaysdk.UddoktaPay;
 
 import java.util.HashMap;
@@ -53,6 +59,7 @@ public class page9_pay_Activity extends AppCompatActivity {
     String uid,total,nameBox,emailBox;
     WebView UddoktaPayWebView;
     String FULL_NAME,EMAIL,enteredAmount;
+    private FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +70,7 @@ public class page9_pay_Activity extends AppCompatActivity {
         ColorDrawable color =new ColorDrawable(Color.parseColor("#FFD700"));
         getSupportActionBar().setBackgroundDrawable(color);
 
+        db=FirebaseFirestore.getInstance();
         Bundle bundle =getIntent().getExtras();
         if(bundle != null){
             uid=bundle.getString("user");
@@ -151,6 +159,22 @@ public class page9_pay_Activity extends AppCompatActivity {
                                 if ("COMPLETED".equals(status)) {
                                     webView.setVisibility(View.GONE);
                                     uiLayout.setVisibility(View.VISIBLE);
+                                    db.collection("Cart").document(uid).delete()
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    Log.d("deleteCart", "DocumentSnapshot successfully deleted!");
+
+                                                    //Toast.makeText(getApplicationContext(), "Removed from Cart",Toast.LENGTH_SHORT).show();
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.w("deleteCart", "Error deleting document", e);
+                                                    Toast.makeText(getApplicationContext(), "Failed to remove",Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
                                     result.setText("Payment Completed");
                                     goTo.setText("Go To Home");
                                     // Handle payment completed case

@@ -64,6 +64,7 @@ public class loginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(loginActivity.this,registerActivity.class);
+                intent.putExtra("tag","DidNotLog");
                 startActivity(intent);
             }
         });

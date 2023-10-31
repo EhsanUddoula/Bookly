@@ -42,6 +42,7 @@ public class registerActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
     DatabaseReference databaseReference;
+    String key;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,14 @@ public class registerActivity extends AppCompatActivity {
 
         ColorDrawable color =new ColorDrawable(Color.parseColor("#FFD700"));
         getSupportActionBar().setBackgroundDrawable(color);
+
+        Bundle bundle =getIntent().getExtras();
+        if(bundle != null) {
+            String identity=bundle.getString("tag");
+            if(identity.equals("DidNotLog")){
+                key="DidNotLog";
+            }else key=identity;
+        }
 
         mAuth=FirebaseAuth.getInstance();
 
@@ -75,8 +84,12 @@ public class registerActivity extends AppCompatActivity {
         loginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(registerActivity.this,loginActivity.class);
-                startActivity(intent);
+                if(key.equals("DidNotLog")) {
+                    Intent intent = new Intent(registerActivity.this, loginActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(),"You Are Already Logged In...",Toast.LENGTH_SHORT).show();
+                }
             }
         });
         icon1.setOnClickListener(new View.OnClickListener() {
@@ -207,8 +220,6 @@ public class registerActivity extends AppCompatActivity {
     private void updateUserInfo(){
         progressBar.setVisibility(View.VISIBLE);
         long timestamp= System.currentTimeMillis();
-
-        String uid=mAuth.getUid();
 
         HashMap<String,Object> hashMap=new HashMap<>();
 

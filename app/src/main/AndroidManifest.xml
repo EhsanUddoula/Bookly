@@ -15,9 +15,25 @@
         android:theme="@style/Base.Theme.Bookly"
         tools:targetApi="31">
         <activity
-            android:name=".FavouriteBook"
+            android:name=".SelfHelp"
             android:exported="false"
             android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".Others"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".Children"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".Biography"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".FavouriteBook"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".BookDetails"
             android:exported="false"

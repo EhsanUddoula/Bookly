@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.interfaces.ItemClickListener;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity{
 
     popAdapter adapter;
 
-    private ImageView Novel,Poetry,mystery_book,religious,cart,top1,top2,top3,top4;
+    private ImageView Novel,Poetry,mystery_book,religious,cart,top1,top2,top3,top4,image,biography,self,children,othres;
     @Override
     public void onStart() {
         super.onStart();
@@ -115,10 +116,15 @@ public class MainActivity extends AppCompatActivity{
         MenuItem logBtn=menu.findItem(R.id.log_in);
         View header=navigationView.getHeaderView(0);
         NameText=header.findViewById(R.id.nameText);
+        image=header.findViewById(R.id.profile_pic);
         Novel=findViewById(R.id.novel);
         Poetry=findViewById(R.id.cat2_poetry);
         mystery_book=findViewById(R.id.cat3_mystery);
         religious=findViewById(R.id.cat4_religious);
+        biography=findViewById(R.id.cat6_biography);
+        children=findViewById(R.id.cat7_children);
+        self=findViewById(R.id.cat5_selfhelp);
+        othres=findViewById(R.id.cat8_others);
         cart=findViewById(R.id.appbar_cart);
         top1=findViewById(R.id.Top1);
         top2=findViewById(R.id.Top2);
@@ -142,6 +148,11 @@ public class MainActivity extends AppCompatActivity{
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             name = ""+snapshot.child("name").getValue();
                             NameText.setText(name);
+                            String st6=""+snapshot.child("image").getValue();
+                            Glide.with(getApplicationContext())
+                                    .load(st6)
+                                    .error(R.drawable.profile_empty)// Assuming you have a method to get the image URL from NovelModel
+                                    .into(image);
                         }
 
                         @Override
@@ -204,6 +215,52 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+        biography.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, Biography.class);
+                FirebaseUser currentUser=mAuth.getCurrentUser();
+                if(currentUser != null)
+                    intent.putExtra("tag",currentUser.getUid());
+                else  intent.putExtra("tag","DidNotLog");
+                startActivity(intent);
+            }
+        });
+
+        self.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, SelfHelp.class);
+                FirebaseUser currentUser=mAuth.getCurrentUser();
+                if(currentUser != null)
+                    intent.putExtra("tag",currentUser.getUid());
+                else  intent.putExtra("tag","DidNotLog");
+                startActivity(intent);
+            }
+        });
+        othres.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, Others.class);
+                FirebaseUser currentUser=mAuth.getCurrentUser();
+                if(currentUser != null)
+                    intent.putExtra("tag",currentUser.getUid());
+                else  intent.putExtra("tag","DidNotLog");
+                startActivity(intent);
+            }
+        });
+        children.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, Children.class);
+                FirebaseUser currentUser=mAuth.getCurrentUser();
+                if(currentUser != null)
+                    intent.putExtra("tag",currentUser.getUid());
+                else  intent.putExtra("tag","DidNotLog");
+                startActivity(intent);
+            }
+        });
+
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -236,7 +293,7 @@ public class MainActivity extends AppCompatActivity{
         top2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this, Mystery.class);
+                Intent intent=new Intent(MainActivity.this, Children.class);
                 FirebaseUser currentUser=mAuth.getCurrentUser();
                 if(currentUser != null)
                     intent.putExtra("tag",currentUser.getUid());
@@ -287,8 +344,17 @@ public class MainActivity extends AppCompatActivity{
                 }
 
                 if(item.getItemId()==R.id.nav_settings){
-                    Intent intent=new Intent(MainActivity.this,setting.class);
-                    startActivity(intent);
+                    FirebaseUser currentUser=mAuth.getCurrentUser();
+                    if(currentUser != null) {
+                        Intent intent = new Intent(MainActivity.this,setting.class);
+                        intent.putExtra("tag", currentUser.getUid());
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(),"Please Log In First...",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this, loginActivity.class);
+                        startActivity(intent);
+                    }
                     drawer.closeDrawer(GravityCompat.START);
                 }
 
@@ -341,10 +407,15 @@ public class MainActivity extends AppCompatActivity{
                     drawer.closeDrawer(GravityCompat.START);
                 }
                 if(item.getItemId()==R.id.nav_register){
-                    Intent intent=new Intent(MainActivity.this,registerActivity.class);
+                    Intent intent=new Intent(MainActivity.this, registerActivity.class);
+                    FirebaseUser currentUser=mAuth.getCurrentUser();
+                    if(currentUser != null)
+                        intent.putExtra("tag",currentUser.getUid());
+                    else  intent.putExtra("tag","DidNotLog");
                     startActivity(intent);
                     drawer.closeDrawer(GravityCompat.START);
                 }
+
 
 
                 return true;
