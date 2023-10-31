@@ -1,6 +1,7 @@
 package com.example.bookly;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +20,12 @@ import java.util.ArrayList;
 public class popAdapter extends RecyclerView.Adapter<popAdapter.myViewHolder>{
     Context context;
     private ArrayList<popBook>dataList;
+    String uid;
 
-    public popAdapter(Context context, ArrayList<popBook> dataList){
+    public popAdapter(Context context, ArrayList<popBook> dataList,String uid){
         this.context=context;
         this.dataList=dataList;
+        this.uid=uid;
     }
 
 
@@ -44,6 +47,19 @@ public class popAdapter extends RecyclerView.Adapter<popAdapter.myViewHolder>{
                 .load(pop.getImage())
                 .error(R.drawable.app_icon)// Assuming you have a method to get the image URL from NovelModel
                 .into(holder.bookPic);
+
+        holder.bookPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(holder.bookPic.getContext(), BookDetails.class);
+                intent.putExtra("tag",uid);
+                intent.putExtra("collect",dataList.get(position).getGenre());
+                intent.putExtra("book",dataList.get(position).getBookId());
+                intent.putExtra("action","Popular");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                holder.bookPic.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -62,6 +62,7 @@ public class favAdapter extends RecyclerView.Adapter<favAdapter.myViewHolder> {
                 intent.putExtra("tag",uid);
                 intent.putExtra("collect",dataList.get(position).getGenre());
                 intent.putExtra("book",dataList.get(position).getBookId());
+                intent.putExtra("action","Favourite");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.image.getContext().startActivity(intent);
             }

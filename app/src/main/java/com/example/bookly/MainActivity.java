@@ -106,13 +106,6 @@ public class MainActivity extends AppCompatActivity{
         //setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
 
-        //for popular book view
-        recyclerView=findViewById(R.id.mainReview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
-        dataList=new ArrayList<>();
-        adapter=new popAdapter(this,dataList);
-        recyclerView.setAdapter(adapter);
-        //end here
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.nav_open, R.string.nav_close);
         drawer.addDrawerListener(toggle);
@@ -362,6 +355,16 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void popularBookView() {
+        recyclerView=findViewById(R.id.mainReview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
+        dataList=new ArrayList<>();
+        String uid;
+        FirebaseUser currentUser=mAuth.getCurrentUser();
+        if(currentUser != null)
+          uid=currentUser.getUid();
+        else  uid="DidNotLog";
+        adapter=new popAdapter(this,dataList,uid);
+        recyclerView.setAdapter(adapter);
         db=FirebaseFirestore.getInstance();
         db.collection("popular").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

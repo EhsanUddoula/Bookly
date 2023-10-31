@@ -89,6 +89,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
                 intent.putExtra("tag",uid);
                 intent.putExtra("collect",dataList.get(position).getGenre());
                 intent.putExtra("book",dataList.get(position).getBookId());
+                intent.putExtra("action",dataList.get(position).getGenre());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.imageName.getContext().startActivity(intent);
             }
