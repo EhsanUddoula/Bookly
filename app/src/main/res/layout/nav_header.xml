@@ -13,12 +13,11 @@
 
     <ImageView
         android:id="@+id/profile_pic"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="20dp"
         android:paddingTop="8dp"
-        android:src="@drawable/profile_empty"
-        />
+        android:src="@drawable/profile_empty" />
 
     <TextView
         android:id="@+id/nameText"

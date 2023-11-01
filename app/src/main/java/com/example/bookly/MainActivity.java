@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity{
 
     popAdapter adapter;
 
-    private ImageView Novel,Poetry,mystery_book,religious,cart,top1,top2,top3,top4,image,biography,self,children,othres;
+    private ImageView Novel,Poetry,mystery_book,religious,cart,top1,top2,top3,top4,profile,biography,self,children,othres;
     @Override
     public void onStart() {
         super.onStart();
@@ -78,6 +78,11 @@ public class MainActivity extends AppCompatActivity{
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             name = ""+snapshot.child("name").getValue();
                             NameText.setText(name);
+                            String st6=""+snapshot.child("image").getValue();
+                            Glide.with(getApplicationContext())
+                                    .load(st6)
+                                    .error(R.drawable.profile_empty)// Assuming you have a method to get the image URL from NovelModel
+                                    .into(profile);
                         }
 
                         @Override
@@ -116,7 +121,7 @@ public class MainActivity extends AppCompatActivity{
         MenuItem logBtn=menu.findItem(R.id.log_in);
         View header=navigationView.getHeaderView(0);
         NameText=header.findViewById(R.id.nameText);
-        image=header.findViewById(R.id.profile_pic);
+        profile=header.findViewById(R.id.profile_pic);
         Novel=findViewById(R.id.novel);
         Poetry=findViewById(R.id.cat2_poetry);
         mystery_book=findViewById(R.id.cat3_mystery);
@@ -146,13 +151,16 @@ public class MainActivity extends AppCompatActivity{
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            Log.d("main","HELLO");
                             name = ""+snapshot.child("name").getValue();
                             NameText.setText(name);
                             String st6=""+snapshot.child("image").getValue();
+                            Log.d("main",st6);
+                            Log.d("main",name);
                             Glide.with(getApplicationContext())
                                     .load(st6)
                                     .error(R.drawable.profile_empty)// Assuming you have a method to get the image URL from NovelModel
-                                    .into(image);
+                                    .into(profile);
                         }
 
                         @Override
@@ -340,6 +348,10 @@ public class MainActivity extends AppCompatActivity{
                         logKey=0;
                         logBtn.setTitle("Sign In");
                         NameText.setText("Your Name");
+                        Glide.with(getApplicationContext())
+                                .load(R.drawable.profile_empty)
+                                .error(R.drawable.profile_empty)// Assuming you have a method to get the image URL from NovelModel
+                                .into(profile);
                     }
                 }
 

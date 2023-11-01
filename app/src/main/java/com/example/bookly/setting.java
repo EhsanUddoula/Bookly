@@ -17,11 +17,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +42,7 @@ public class setting extends AppCompatActivity {
     private EditText name,phone,address,workplace,alt;
     private ImageView image;
     private TextView profileName;
+    private ProgressBar progressBar;
     String uid,st1,st2,st3,st4,st5,st6;
     ActivityResultLauncher<String> TakePhoto;
     FirebaseStorage storage;
@@ -61,6 +64,7 @@ public class setting extends AppCompatActivity {
             uid=bundle.getString("tag");
         }
 
+        progressBar=findViewById(R.id.progressBar);
         image=findViewById(R.id.logo);
         name=findViewById(R.id.namebox);
         phone=findViewById(R.id.editTextPhone);
@@ -71,6 +75,7 @@ public class setting extends AppCompatActivity {
         button=findViewById(R.id.button);
         storage=FirebaseStorage.getInstance();
 
+        progressBar.setVisibility(View.VISIBLE);
         DatabaseReference ref= FirebaseDatabase.getInstance().getReference("users");
 
         ref.child(uid)
@@ -95,6 +100,8 @@ public class setting extends AppCompatActivity {
                                 .load(st6)
                                 .error(R.drawable.profile_empty)// Assuming you have a method to get the image URL from NovelModel
                                 .into(image);
+
+                        progressBar.setVisibility(View.GONE);
                     }
 
                     @Override
@@ -123,51 +130,61 @@ public class setting extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
+                if(imageUri!=null)
                 upload();
+                else update();
             }
         });
 
 
     }
-
+    Map<String,Object> map=new HashMap<>();
     private void upload() {
-        final Map<String,Object> map=new HashMap<>();
         StorageReference reference= storage.getReference().child(uid);
-        if(imageUri != null){
 
-            reference.putFile(imageUri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                           Log.d("Firebase","image Uploaded");
-                        }
-                    });
-        }
+        Log.d("log","problem ki?");
+        reference.putFile(imageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                       Log.d("Firebase","image Uploaded");
+                       Task<Uri> uriTask=taskSnapshot.getStorage().getDownloadUrl();
+                       while(!uriTask.isSuccessful());
+                       st6=""+uriTask.getResult();
+                        Log.d("Firebase",st6);
+                        update();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("Firebase","image Upload failed");
+                    }
+                });
+    }
 
-//        if(imageUri != null) {
-//            StorageReference reference = storage.getReference().child("Novel");
-//            reference.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-//                    if (task.isSuccessful()) {
-//                        Toast.makeText(getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
-//        }
+    private void update(){
         st1=name.getText().toString().trim();
         st2=phone.getText().toString().trim();
         st3=address.getText().toString().trim();
         st4=alt.getText().toString().trim();
         st5=workplace.getText().toString().trim();
+        map.put("image",""+st6);
         map.put("name",st1);
         map.put("phone",st2);
         map.put("address",st3);
         map.put("alt",st4);
         map.put("workplace",st5);
+        Log.d("Firebase1",st6);
         databaseReference= FirebaseDatabase.getInstance().getReference("users");
-        databaseReference.child(uid).setValue(map);
-        Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_SHORT).show();
-        finish();
+        databaseReference.child(uid).updateChildren(map)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
