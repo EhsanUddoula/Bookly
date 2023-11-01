@@ -427,6 +427,22 @@ public class MainActivity extends AppCompatActivity{
                     startActivity(intent);
                     drawer.closeDrawer(GravityCompat.START);
                 }
+                if(item.getItemId()==R.id.nav_offers){
+                    Intent intent=new Intent(MainActivity.this, Offer.class);
+                    FirebaseUser currentUser=mAuth.getCurrentUser();
+                    if(currentUser != null)
+                        intent.putExtra("tag",currentUser.getUid());
+                    else  intent.putExtra("tag","DidNotLog");
+                    startActivity(intent);
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+                if(item.getItemId()==R.id.nav_share){
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Bookly");
+                    intent.putExtra(Intent.EXTRA_TEXT, "Bookly");
+                    startActivity(Intent.createChooser(intent, "choose one"));
+                }
 
 
 

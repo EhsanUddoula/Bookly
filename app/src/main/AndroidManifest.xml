@@ -15,21 +15,29 @@
         android:theme="@style/Base.Theme.Bookly"
         tools:targetApi="31">
         <activity
-            android:name=".SelfHelp"
+            android:name=".Offer"
             android:exported="false"
             android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".resetPass"
+            android:exported="false"
+            android:parentActivityName=".loginActivity" />
+        <activity
+            android:name=".SelfHelp"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Others"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Children"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Biography"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".FavouriteBook"
             android:exported="false"
@@ -77,10 +85,6 @@
             android:name=".setting"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".resetPass"
-            android:exported="false"
-            android:parentActivityName=".loginActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="false"
