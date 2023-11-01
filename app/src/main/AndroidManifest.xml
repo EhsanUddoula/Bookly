@@ -53,7 +53,7 @@
         <activity
             android:name=".page8_placeOrder_Activity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+             />
         <activity
             android:name=".page7_Activity"
             android:exported="false" />

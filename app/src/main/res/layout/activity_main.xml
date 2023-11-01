@@ -25,95 +25,118 @@
                 android:layout_marginTop="85dp"
                 android:text="Popular Books"
                 android:textSize="22sp"
+                android:layout_marginLeft="35dp"
+                android:textColor="#0E497C"
                 android:textStyle="bold"/>
+
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mainReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:id="@+id/mainReview"/>
+                android:layout_marginLeft="35dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Categories"
+                android:layout_marginLeft="35dp"
+                android:textColor="#0E497C"
                 android:textSize="22sp"
                 android:textStyle="bold"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                app:cardCornerRadius="15dp"
+                android:layout_margin="10dp">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="35dp">
-                <ImageView
-                    android:id="@+id/novel"
-                    android:layout_width="70dp"
-                    android:layout_height="67dp"
-                    android:src="@drawable/novel"
-                    />
-                <ImageView
-                    android:id="@+id/cat2_poetry"
-                    android:layout_width="70dp"
-                    android:layout_height="67dp"
-                    android:src="@drawable/poetry"
-                    android:layout_marginLeft="15dp"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="25dp">
 
-                <ImageView
-                    android:id="@+id/cat3_mystery"
-                    android:layout_width="70dp"
-                    android:layout_height="67dp"
-                    android:src="@drawable/mystery"
-                    android:layout_marginLeft="15dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
+                        <ImageView
+                            android:id="@+id/novel"
+                            android:layout_width="70dp"
+                            android:layout_height="67dp"
+                            android:src="@drawable/novel"
+                            />
+                        <ImageView
+                            android:id="@+id/cat2_poetry"
+                            android:layout_width="70dp"
+                            android:layout_height="67dp"
+                            android:src="@drawable/poetry"
+                            android:layout_marginLeft="15dp"/>
 
-                <ImageView
-                    android:id="@+id/cat4_religious"
-                    android:layout_width="70dp"
-                    android:layout_height="67dp"
-                    android:src="@drawable/religious"
-                    android:layout_marginLeft="15dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="35dp">
-                <ImageView
-                    android:id="@+id/cat5_selfhelp"
-                    android:layout_width="70dp"
-                    android:layout_height="67dp"
-                    android:src="@drawable/self_help"
-                    />
+                        <ImageView
+                            android:id="@+id/cat3_mystery"
+                            android:layout_width="70dp"
+                            android:layout_height="67dp"
+                            android:src="@drawable/mystery"
+                            android:layout_marginLeft="15dp"/>
 
-                <ImageView
-                    android:id="@+id/cat6_biography"
-                    android:layout_width="70dp"
-                    android:layout_height="67dp"
-                    android:src="@drawable/biography"
-                    android:layout_marginLeft="15dp"  />
+                        <ImageView
+                            android:id="@+id/cat4_religious"
+                            android:layout_width="70dp"
+                            android:layout_height="67dp"
+                            android:src="@drawable/religious"
+                            android:layout_marginLeft="15dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp">
+                        <ImageView
+                            android:id="@+id/cat5_selfhelp"
+                            android:layout_width="70dp"
+                            android:layout_height="67dp"
+                            android:src="@drawable/self_help"
+                            />
 
-                <ImageView
-                    android:id="@+id/cat7_children"
-                    android:layout_width="70dp"
-                    android:layout_height="67dp"
-                    android:src="@drawable/children"
-                    android:layout_marginLeft="15dp" />
+                        <ImageView
+                            android:id="@+id/cat6_biography"
+                            android:layout_width="70dp"
+                            android:layout_height="67dp"
+                            android:src="@drawable/biography"
+                            android:layout_marginLeft="15dp"  />
 
-                <ImageView
-                    android:id="@+id/cat8_others"
-                    android:layout_width="70dp"
-                    android:layout_height="67dp"
-                    android:src="@drawable/others"
-                    android:layout_marginLeft="15dp"  />
+                        <ImageView
+                            android:id="@+id/cat7_children"
+                            android:layout_width="70dp"
+                            android:layout_height="67dp"
+                            android:src="@drawable/children"
+                            android:layout_marginLeft="15dp" />
+
+                        <ImageView
+                            android:id="@+id/cat8_others"
+                            android:layout_width="70dp"
+                            android:layout_height="67dp"
+                            android:src="@drawable/others"
+                            android:layout_marginLeft="15dp"  />
 
 
-            </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Advertisement"
-                android:textSize="22sp"
+                android:layout_marginTop="7dp"
+                android:text="Show In Advertisement"
+                android:layout_marginLeft="35dp"
+
+                android:textColor="#0E497C"
+                android:textSize="18sp"
                 android:textStyle="bold"/>
 
             <com.denzcoskun.imageslider.ImageSlider
@@ -132,48 +155,61 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Top 4 Categories This week"
+                android:layout_marginLeft="35dp"
+                android:textColor="#0E497C"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="35dp">
-                <ImageView
-                    android:id="@+id/Top1"
-                    android:layout_width="70dp"
-                    android:layout_height="67dp"
-                    android:src="@drawable/novel"
-                    />
-                <ImageView
-                    android:id="@+id/Top2"
-                    android:layout_width="70dp"
-                    android:layout_height="67dp"
-                    android:src="@drawable/mystery"
-                    android:layout_marginLeft="15dp"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                app:cardCornerRadius="15dp"
+                android:layout_margin="10dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="25dp">
+                    <ImageView
+                        android:id="@+id/Top1"
+                        android:layout_width="70dp"
+                        android:layout_height="67dp"
+                        android:src="@drawable/novel"
+                        />
+                    <ImageView
+                        android:id="@+id/Top2"
+                        android:layout_width="70dp"
+                        android:layout_height="67dp"
+                        android:src="@drawable/mystery"
+                        android:layout_marginLeft="15dp"/>
 
-                <ImageView
-                    android:id="@+id/Top3"
-                    android:layout_width="70dp"
-                    android:layout_height="67dp"
-                    android:src="@drawable/children"
-                    android:layout_marginLeft="15dp"/>
+                    <ImageView
+                        android:id="@+id/Top3"
+                        android:layout_width="70dp"
+                        android:layout_height="67dp"
+                        android:src="@drawable/children"
+                        android:layout_marginLeft="15dp"/>
 
-                <ImageView
-                    android:id="@+id/Top4"
-                    android:layout_width="70dp"
-                    android:layout_height="67dp"
-                    android:src="@drawable/religious"
-                    android:layout_marginLeft="15dp" />
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/Top4"
+                        android:layout_width="70dp"
+                        android:layout_height="67dp"
+                        android:src="@drawable/religious"
+                        android:layout_marginLeft="15dp" />
+                </LinearLayout>
 
-            <com.google.android.material.imageview.ShapeableImageView
+            </androidx.cardview.widget.CardView>
+
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/image_slider2"
                 android:layout_width="333dp"
-                android:layout_height="227dp"
-                android:src="@drawable/offer1"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="15dp"
+                android:layout_height="200dp"
                 android:layout_marginLeft="35dp"
-                app:shapeAppearanceOverlay="@style/round"/>
+                app:iss_auto_cycle="true"
+                app:iss_period="3000"
+                app:iss_delay="3000"
+                app:iss_text_align="CENTER"/>
 
         </LinearLayout>
     </ScrollView>

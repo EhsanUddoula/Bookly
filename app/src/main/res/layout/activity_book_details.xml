@@ -37,7 +37,7 @@
                 app:layout_constraintHorizontal_bias="0.042"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.511" />
+                app:layout_constraintVertical_bias="0.424" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -63,6 +63,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#0E497C"
             android:textStyle="bold"
             android:text="BookName"
             android:id="@+id/bookText"
@@ -73,7 +74,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#F27EFF22"
+            android:textColor="#FFD900"
             android:text="Writer Name"
             android:id="@+id/writerText"
             android:textSize="23sp"
@@ -92,7 +93,7 @@
                 android:text="price"
                 android:textSize="23sp"
                 android:id="@+id/priceText"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="28dp"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             <TextView
@@ -100,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="You have 25% discount"
+                android:textColor="#FFD900"
                 android:textSize="18sp"
                 android:layout_marginLeft="3dp"
                 android:layout_weight="1"/>
@@ -114,6 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="GENRE"
+                android:textColor="#0E497C"
                 android:textSize="25sp"
                 android:layout_marginLeft="20dp"
                 android:textStyle="bold"
@@ -122,6 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:textColor="#0E497C"
                 android:text="LANGUAGE"
                 android:textSize="25sp"
                 android:textStyle="bold"

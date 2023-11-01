@@ -4,112 +4,150 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/grad_back"
+    android:background="#FFD500"
     android:orientation="vertical"
     tools:context=".about_us">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="28dp"
-        android:src="@drawable/bookliname"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.455"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="366dp"
-        android:layout_height="112dp"
-        android:layout_marginTop="28dp"
-        android:text="Your go-to Android app for buying books effortlessly. Discover your next great read, read reviews, and connect with fellow book enthusiasts. With Bookly, the world of literature is at your fingertips.For more details about the developer click on below the buttons."
-        android:textColor="#000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <ImageView
-        android:id="@+id/ehsimg"
-        android:layout_width="114dp"
-        android:layout_height="114dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="104dp"
-        android:background="@drawable/circular_background"
-        android:scaleType="centerCrop"
-        android:src="@drawable/pal"
-        app:layout_constraintEnd_toStartOf="@+id/kanimg"
-        app:layout_constraintTop_toBottomOf="@+id/textView"></ImageView>
-
-    <ImageView
-        android:id="@+id/kanimg"
-        android:layout_width="114dp"
-        android:layout_height="114dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="28dp"
-        android:background="@drawable/circular_background"
-        android:scaleType="centerCrop"
-        android:src="@drawable/kan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <ImageView
-        android:id="@+id/rayimg"
-        android:layout_width="114dp"
-        android:layout_height="114dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="264dp"
-        android:background="@drawable/circular_background"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/ehsbut"
-        android:layout_width="102dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="120dp"
-        android:background="@drawable/butt_style"
-        android:text="Ehsan"
-        android:textColor="#030300"
-        app:layout_constraintEnd_toStartOf="@+id/kanbut"
-        app:layout_constraintHorizontal_bias="0.946"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ehsimg" />
-
-    <Button
-        android:id="@+id/kanbut"
-        android:layout_width="97dp"
-        android:layout_height="50dp"
-
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="36dp"
-        android:background="@drawable/butt_style"
-        android:text="Kanij"
-        android:textColor="#030300"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kanimg" />
-
-    <Button
-        android:id="@+id/raybut"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:background="@drawable/butt_style"
-        android:text="Rayhan"
-        android:textColor="#030300"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFD500"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rayimg"
-        app:layout_constraintVertical_bias="0.542" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".about_us">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:src="@drawable/bookliname"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.045" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="366dp"
+            android:layout_height="112dp"
+            android:layout_marginTop="28dp"
+            android:text="Your go-to Android app for buying books effortlessly. Discover your next great read, read reviews, and connect with fellow book enthusiasts. With Bookly, the world of literature is at your fingertips.For more details about the developer click on below the buttons."
+            android:textAlignment="center"
+            android:textColor="#0E497C"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.488"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ehsimg"
+            android:layout_width="114dp"
+            android:layout_height="114dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="104dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.766"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.479"
+            app:shapeAppearanceOverlay="@style/round" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/kanimg"
+            android:layout_width="114dp"
+            android:layout_height="114dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="96dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/kan"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.225"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.777"
+            app:shapeAppearanceOverlay="@style/round" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/rayimg"
+            android:layout_width="114dp"
+            android:layout_height="114dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circular_background"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ray"
+            app:layout_constraintBottom_toTopOf="@+id/raybut"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.797"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:shapeAppearanceOverlay="@style/round" />
+
+        <Button
+            android:id="@+id/kanbut"
+            android:layout_width="107dp"
+            android:layout_height="30dp"
+            android:background="#00FFFFFF"
+            android:text="Kanij"
+            android:textColor="#0E497C"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.22"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kanimg"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/raybut"
+            android:layout_width="107dp"
+            android:layout_height="30dp"
+            android:background="#00FFFFFF"
+            android:text="Rayhan"
+            android:textColor="#0E497C"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.779"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.8" />
+
+        <Button
+            android:id="@+id/ehsbut"
+            android:layout_width="107dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="220dp"
+            android:background="#00FFFFFF"
+            android:text="Ehsan"
+            android:textColor="#0E497C"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.486"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ehsimg"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

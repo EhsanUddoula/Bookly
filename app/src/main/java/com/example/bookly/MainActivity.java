@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity{
 
         popularBookView();
         advertiseView();
+        offerView();
 
         Bundle bundle=getIntent().getExtras();
         if(bundle!=null){
@@ -457,6 +458,27 @@ public class MainActivity extends AppCompatActivity{
         imageList.add(new SlideModel("https://bit.ly/2YoJ77H", "The animal population decreased by 58 percent in 42 years.",ScaleTypes.CENTER_CROP));
         imageList.add(new SlideModel("https://bit.ly/2BteuF2", "Elephants and tigers may become extinct.",ScaleTypes.CENTER_CROP));
         imageList.add(new SlideModel("https://bit.ly/3fLJf72", "And people do that.",ScaleTypes.CENTER_CROP));
+        ImageSlider imageSlider=findViewById(R.id.image_slider2);
+        imageSlider.setImageList(imageList);
+        imageSlider.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void doubleClick(int i) {
+
+            }
+
+            @Override
+            public void onItemSelected(int position) {
+                // You can listen here.
+            }
+        });
+    }
+
+    private void offerView() {
+        ArrayList<SlideModel> imageList=new ArrayList<>();
+
+        imageList.add(new SlideModel(R.drawable.offer1,ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.offer2,ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.offer3, ScaleTypes.CENTER_CROP));
         ImageSlider imageSlider=findViewById(R.id.image_slider);
         imageSlider.setImageList(imageList);
         imageSlider.setItemClickListener(new ItemClickListener() {

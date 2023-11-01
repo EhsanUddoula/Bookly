@@ -81,7 +81,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             if (task.getResult().exists()) {
                                   holder.addCart.setText("ADDED TO CART");
-                                  holder.addCart.setTextColor(Color.parseColor("#8BFF33"));
+                                  holder.addCart.setTextColor(Color.parseColor("#0E497C"));
                             }
                         }
                     });
@@ -188,7 +188,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder> {
                         Log.d("tag0", "DocumentSnapshot successfully written!");
                         progressBar.setVisibility(View.GONE);
                         holder.addCart.setText("ADDED TO CART");
-                        holder.addCart.setTextColor(Color.parseColor("#8BFF33"));
+                        holder.addCart.setTextColor(Color.parseColor("#0E497C"));
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

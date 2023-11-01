@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ECECEC"
     android:orientation="vertical"
+    android:layout_gravity="center"
     tools:context=".page9_pay_Activity">
 
     <LinearLayout
@@ -18,7 +19,7 @@
             android:id="@+id/NamePay"
             android:layout_width="330dp"
             android:layout_height="30dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="250dp"
             android:layout_marginLeft="50dp"
             android:text="Name"
             android:textSize="20sp"
@@ -46,14 +47,18 @@
             android:textStyle="italic"/>
 
         <Button
-            android:layout_width="100dp"
+            android:layout_width="105dp"
             android:layout_height="50dp"
             android:id="@+id/payIt"
-            android:text="PAY NOW"
+            android:background="@drawable/input_bg"
+            android:text="CONFIRM"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:typeface="monospace"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="170dp"
             android:textStyle="bold"
-            android:background="#E62222FF"/>
+           />
 
         <TextView
             android:id="@+id/result"
