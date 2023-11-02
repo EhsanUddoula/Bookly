@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity{
         // Check if user is signed in (non-null) and update UI accordingly.
         Menu menu=navigationView.getMenu();
         MenuItem logBtn=menu.findItem(R.id.log_in);
+        MenuItem registerBtn=menu.findItem(R.id.nav_register);
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             logKey=1;
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity{
                                     .load(st6)
                                     .error(R.drawable.profile_empty)// Assuming you have a method to get the image URL from NovelModel
                                     .into(profile);
+                            registerBtn.setVisible(false);
                         }
 
                         @Override
@@ -119,6 +121,7 @@ public class MainActivity extends AppCompatActivity{
         navigationView=findViewById(R.id.nav_view);
         Menu menu=navigationView.getMenu();
         MenuItem logBtn=menu.findItem(R.id.log_in);
+        MenuItem registerBtn=menu.findItem(R.id.nav_register);
         View header=navigationView.getHeaderView(0);
         NameText=header.findViewById(R.id.nameText);
         profile=header.findViewById(R.id.profile_pic);
@@ -162,6 +165,7 @@ public class MainActivity extends AppCompatActivity{
                                     .load(st6)
                                     .error(R.drawable.profile_empty)// Assuming you have a method to get the image URL from NovelModel
                                     .into(profile);
+                            registerBtn.setVisible(false);
                         }
 
                         @Override
@@ -173,7 +177,7 @@ public class MainActivity extends AppCompatActivity{
 
         if(logKey==1) {
             logBtn.setTitle("Sign Out");
-
+            registerBtn.setVisible(true);
         }
 
         Novel.setOnClickListener(new View.OnClickListener() {
@@ -353,6 +357,7 @@ public class MainActivity extends AppCompatActivity{
                                 .load(R.drawable.profile_empty)
                                 .error(R.drawable.profile_empty)// Assuming you have a method to get the image URL from NovelModel
                                 .into(profile);
+                        registerBtn.setVisible(true);
                     }
                 }
 
