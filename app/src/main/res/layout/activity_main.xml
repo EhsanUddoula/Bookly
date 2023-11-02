@@ -132,7 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
-                android:text="Show In Advertisement"
+                android:text="Sale Offers"
                 android:layout_marginLeft="35dp"
 
                 android:textColor="#0E497C"

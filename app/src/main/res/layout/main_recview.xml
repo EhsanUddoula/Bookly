@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="15dp"
     android:layout_margin="5dp">
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,22 +39,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp">
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:id="@+id/bookPrice"
-                android:text="0.0Tk"
-                android:textSize="12sp"
-                android:layout_marginTop="2dp" />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1"
+                android:text="0.0Tk"
+                android:textAlignment="viewStart"
+                android:textColor="#0e497c"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:text="Discount 25% OFF"
-                android:textColor="#FFD900"
-                android:textSize="16sp"
-                android:layout_marginTop="1dp" />
+                android:textColor="#FFB900"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                android:typeface="serif" />
 
 
         </LinearLayout>

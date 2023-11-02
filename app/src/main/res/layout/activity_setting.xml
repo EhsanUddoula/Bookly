@@ -30,7 +30,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/logo"
                 android:layout_width="95dp"
                 android:layout_height="95dp"
@@ -41,7 +41,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.066"
-                app:srcCompat="@drawable/profile_empty" />
+                app:srcCompat="@drawable/profile_empty"
+                app:shapeAppearanceOverlay="@style/circle" />
 
             <TextView
                 android:id="@+id/profile_name"

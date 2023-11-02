@@ -55,10 +55,11 @@
                 android:layout_marginLeft="65dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/input_bg"
-                android:padding="3dp"
-                android:text="SHOW DETAILS"
+                android:padding="8dp"
+                android:text="  Show Details  "
                 android:textColor="#FFFFFF"
-                android:textSize="15sp" />
+                android:textSize="14sp"
+                android:typeface="serif" />
 
         </LinearLayout>
 

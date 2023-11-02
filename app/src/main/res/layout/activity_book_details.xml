@@ -64,47 +64,51 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#0E497C"
-            android:textStyle="bold"
             android:text="BookName"
             android:id="@+id/bookText"
             android:textSize="25sp"
             android:gravity="center"
             android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:typeface="serif"
             />
+
         <TextView
+            android:id="@+id/writerText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#FFD900"
-            android:text="Writer Name"
-            android:id="@+id/writerText"
-            android:textSize="23sp"
+            android:layout_marginTop="2dp"
             android:gravity="center"
-            android:layout_marginTop="10dp"
-            />
+            android:text="Writer Name"
+            android:textSize="19sp"
+            android:textStyle="italic" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"><TextView
+            android:id="@+id/priceText"
+            android:layout_width="388dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="price"
+            android:textSize="23sp"
+            android:textStyle="bold" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="522dp"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="price"
-                android:textSize="23sp"
-                android:id="@+id/priceText"
-                android:layout_marginEnd="28dp"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
                 android:gravity="left"
                 android:text="You have 25% discount"
-                android:textColor="#FFD900"
-                android:textSize="18sp"
-                android:layout_marginLeft="3dp"
-                android:layout_weight="1"/>
+                android:textColor="#FFB900"
+                android:textSize="21sp"
+                android:textStyle="bold|italic"
+                android:typeface="serif" />
 
         </LinearLayout>
         <LinearLayout
@@ -115,37 +119,37 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
                 android:text="GENRE"
                 android:textColor="#0E497C"
-                android:textSize="25sp"
-                android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:layout_weight="1"/>
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:textColor="#0E497C"
-                android:text="LANGUAGE"
-                android:textSize="25sp"
-                android:textStyle="bold"
                 android:layout_marginLeft="10dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="LANGUAGE"
+                android:textColor="#0E497C"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="2dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:text="ppp"
                 android:textSize="23sp"
                 android:id="@+id/genre"
-                android:layout_marginLeft="18dp"
+                android:layout_marginLeft="25dp"
                 android:layout_weight="1"/>
             <TextView
                 android:layout_width="match_parent"
@@ -154,19 +158,20 @@
                 android:text="bangla"
                 android:id="@+id/language"
                 android:textSize="18sp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="16dp"
                 android:layout_weight="1"/>
 
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Book Information"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="18dp"
-            />
+            android:layout_marginTop="25dp"
+            android:text="Book Information"
+            android:textColor="#0e497c"
+            android:textSize="20sp"
+            android:textStyle="bold" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -180,12 +185,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Author Information"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="18dp"
-            />
+            android:layout_marginTop="10dp"
+            android:text="Author Information"
+            android:textColor="#0e497c"
+            android:textSize="20sp"
+            android:textStyle="bold" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

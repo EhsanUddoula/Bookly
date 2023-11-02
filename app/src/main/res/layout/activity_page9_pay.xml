@@ -10,76 +10,78 @@
     tools:context=".page9_pay_Activity">
 
     <LinearLayout
+        android:id="@+id/uilayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/uilayout"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/NamePay"
             android:layout_width="330dp"
             android:layout_height="30dp"
-            android:layout_marginTop="250dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="200dp"
+            android:gravity="center"
             android:text="Name"
             android:textSize="20sp"
-            android:gravity="center"
-            android:textStyle="italic"/>
+            android:textStyle="italic" />
+
         <TextView
             android:id="@+id/EmailPay"
             android:layout_width="330dp"
             android:layout_height="30dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="50dp"
-            android:text="Email"
             android:gravity="center"
+            android:text="Email"
             android:textSize="20sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic" />
+
         <TextView
             android:id="@+id/PricePay"
             android:layout_width="330dp"
             android:layout_height="30dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="50dp"
-            android:text="price"
             android:gravity="center"
+            android:text="price"
             android:textSize="20sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic" />
 
         <Button
-            android:layout_width="105dp"
-            android:layout_height="50dp"
             android:id="@+id/payIt"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="145dp"
+            android:layout_marginTop="60dp"
             android:background="@drawable/input_bg"
-            android:text="CONFIRM"
+            android:text="  CONFIRM  "
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:typeface="monospace"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="170dp"
+            android:textSize="18sp"
             android:textStyle="bold"
-           />
+            android:typeface="monospace" />
 
         <TextView
             android:id="@+id/result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:layout_marginLeft="50dp"
-            android:text=""
+            android:layout_marginTop="30dp"
             android:gravity="center"
+            android:text=""
             android:textSize="20sp"
-            android:textStyle="normal"/>
+            android:textStyle="normal" />
+
         <TextView
             android:id="@+id/goToHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:layout_marginLeft="50dp"
-            android:text=""
+            android:layout_marginTop="30dp"
             android:gravity="center"
+            android:text=""
             android:textSize="20sp"
-            android:textStyle="normal"/>
+            android:textStyle="normal" />
     </LinearLayout>
 
     <LinearLayout
