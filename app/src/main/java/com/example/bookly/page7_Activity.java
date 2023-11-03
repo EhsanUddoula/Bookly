@@ -97,6 +97,7 @@ public class page7_Activity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent= new Intent(page7_Activity.this, page8_placeOrder_Activity.class);
                 intent.putExtra("user",uid);
+                calculateTotal(dataList);
                 intent.putExtra("total",TotalCost+"Tk");
                 startActivity(intent);
             }
@@ -107,9 +108,13 @@ public class page7_Activity extends AppCompatActivity {
 
     private void calculateTotal(ArrayList<CartItem> dataList) {
         TotalCost=0.0;
+        double cost;
+        Log.d("price","inside updateTotal..");
         for(CartItem item: dataList){
-            TotalCost+= Double.parseDouble(item.getPrice().replaceAll("[^\\d.]",""));
+            cost = Double.parseDouble(item.getPrice().replaceAll("[^\\d.]",""))*Integer.parseInt(item.getAmount());
+            TotalCost += cost;
         }
+        Log.d("price1","after data read..."+ TotalCost);
         total.setText(TotalCost+ " Tk");
     }
 
